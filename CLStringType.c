@@ -14,53 +14,53 @@ struct CLStringType
     CLStringTypeEncoding encoding;
 };
 
-CLStringType CLStringTypeCreate()
+CLStringType *CLStringTypeCreate()
 {
-    CLStringType str;
-    str.str = "";
-    str.encoding = CLStringTypeEncodingUTF8;
+    CLStringType *str = calloc(1, sizeof(CLStringType));
+    str->str = "";
+    str->encoding = CLStringTypeEncodingUTF8;
     return str;
 }
 
-CLStringType CLStringTypeCreateWithCString(const char *string)
+CLStringType *CLStringTypeCreateWithCString(const char *string)
 {
-    CLStringType str = CLStringTypeCreate();
+    CLStringType *str = CLStringTypeCreate();
     char *dup = strdup(string);
-    str.str = dup;
+    str->str = dup;
     return str;
 }
 
-CLStringType CLStringTypeCreateWithContentsOfPath(const char *path)
+CLStringType *CLStringTypeCreateWithContentsOfPath(const char *path)
 {
     FILE *f = fopen(path, "r");
-    CLStringType str = CLStringTypeCreateWithContentsOfFile(f);
+    CLStringType *str = CLStringTypeCreateWithContentsOfFile(f);
     fclose(f);
     return str;
 }
 
-CLStringType CLStringTypeCreateWithContentsOfFile(FILE *f)
+CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *f)
 {
-    CLStringType str;
-    str.encoding = CLStringTypeEncodingUTF8;
+    CLStringType *str = calloc(1, sizeof(CLStringType));
+    str->encoding = CLStringTypeEncodingUTF8;
     fseek(f, 0L, SEEK_END);
     long long fsize = ftell(f);
     fseek(f, 0L, SEEK_SET);
     char *buf = malloc(sizeof(char) * fsize);
     fread(buf, fsize, 1, f);
-    str.str = strdup(buf);
+    str->str = strdup(buf);
     free(buf);
     return str;
 }
 
-CLStringType CLStringCopy(CLStringType string)
+CLStringType *CLStringCopy(CLStringType *string)
 {
-    CLStringType newstr;
-    newstr.encoding = string.encoding;
-    newstr.str = strdup(string.str);
+    CLStringType *newstr = calloc(1, sizeof(CLStringType));
+    newstr->encoding = string->encoding;
+    newstr->str = strdup(string->str);
     return newstr;
 }
 
-const char *CLStringCString(CLStringType str)
+const char *CLStringCString(CLStringType *str)
 {
-    return str.str;
+    return str->str;
 }

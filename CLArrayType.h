@@ -12,6 +12,6 @@
 
 typedef struct CLArrayType CLArrayType;
 
-CLArrayType CLArrayTypeCreateWithObjects(void *, ...);
-int CLArrayTypeCount(CLArrayType);
-void *CLArrayObjectAtIndex(CLArrayType, int);
+CLArrayType *CLArrayTypeCreateWithObjects(void *, ...);
+int CLArrayTypeCount(CLArrayType *);
+void *CLArrayObjectAtIndex(CLArrayType *, int);

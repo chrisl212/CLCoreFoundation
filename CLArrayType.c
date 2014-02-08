@@ -13,36 +13,39 @@ struct CLArrayType
     void **objs;
 };
 
-CLArrayType CLArrayTypeCreateWithObjects(void *o, ...)
+CLArrayType *CLArrayTypeCreateWithObjects(void *o, ...)
 {
-    CLArrayType retval;
+    CLArrayType *retval = calloc(1, sizeof(CLArrayType));
+    if (!o)
+        return retval;
     va_list list;
     va_start(list, o);
-    int count = 0;
+    int count = 1;
     while (va_arg(list, void *) != NULL)
     {
         count++;
     }
     va_end(list);
     va_start(list, o);
-    retval.objs = malloc(sizeof(void) * count);
-    for (int i = 0; i < count; i++)
+    retval->objs = malloc(sizeof(void) * count);
+    retval->objs[0] = o;
+    for (int i = 1; i < count; i++)
     {
-        retval.objs[i] = va_arg(list, void *);
+        retval->objs[i] = va_arg(list, void *);
     }
     va_end(list);
     
     return retval;
 }
 
-int CLArrayTypeCount(CLArrayType arr)
+int CLArrayTypeCount(CLArrayType *arr)
 {
     int c = 0;
-    for (; arr.objs[c] != NULL; c++);
+    for (; arr->objs[c] != NULL; c++);
     return c;
 }
 
-void *CLArrayObjectAtIndex(CLArrayType arr, int ind)
+void *CLArrayObjectAtIndex(CLArrayType *arr, int ind)
 {
-    return arr.objs[ind];
+    return arr->objs[ind];
 }

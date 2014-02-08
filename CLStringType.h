@@ -18,9 +18,9 @@ typedef enum
     CLStringTypeEncodingUnicode
 } CLStringTypeEncoding;
 
-CLStringType CLStringTypeCreate();
-CLStringType CLStringTypeCreateWithCString(const char *);
-CLStringType CLStringTypeCreateWithContentsOfPath(const char *);
-CLStringType CLStringTypeCreateWithContentsOfFile(FILE *);
-CLStringType CLStringCopy(CLStringType);
-const char *CLStringCString(CLStringType);
+CLStringType *CLStringTypeCreate();
+CLStringType *CLStringTypeCreateWithCString(const char *);
+CLStringType *CLStringTypeCreateWithContentsOfPath(const char *);
+CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *);
+CLStringType *CLStringCopy(CLStringType *);
+const char *CLStringCString(CLStringType *);
