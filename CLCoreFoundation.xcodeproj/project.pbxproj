@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		63BBCEE618A6D6D50019D1A1 /* libCLCoreFoundation.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libCLCoreFoundation.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		63BBCEED18A6D7BC0019D1A1 /* CLCoreFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLCoreFoundation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +25,7 @@
 		63BBCEDD18A6D6D50019D1A1 = {
 			isa = PBXGroup;
 			children = (
+				63BBCEED18A6D7BC0019D1A1 /* CLCoreFoundation.h */,
 				63BBCEE718A6D6D50019D1A1 /* Products */,
 			);
 			sourceTree = "<group>";
