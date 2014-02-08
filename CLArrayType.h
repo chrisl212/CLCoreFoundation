@@ -10,8 +10,13 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+#ifndef CLArrayType_h
+#define CLArrayType_h
+
 typedef struct CLArrayType CLArrayType;
 
 CLArrayType *CLArrayTypeCreateWithObjects(void *, ...);
 int CLArrayTypeCount(CLArrayType *);
 void *CLArrayObjectAtIndex(CLArrayType *, int);
+
+#endif

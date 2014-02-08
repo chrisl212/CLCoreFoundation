@@ -11,6 +11,9 @@
 #include <string.h>
 #include <stdbool.h>
 
+#ifndef CLStringType_h
+#define CLStringType_h
+
 typedef struct CLStringType CLStringType;
 typedef enum
 {
@@ -24,5 +27,8 @@ CLStringType *CLStringTypeCreateWithCString(const char *);
 CLStringType *CLStringTypeCreateWithContentsOfPath(const char *);
 CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *);
 CLStringType *CLStringCopy(CLStringType *);
+CLStringType *CLStringByAppendingString(CLStringType *, CLStringType *);
 bool CLStringCompare(CLStringType *, CLStringType *);
-const char *CLStringCString(CLStringType *);
+char *CLStringCString(CLStringType *);
+
+#endif

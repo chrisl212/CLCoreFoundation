@@ -7,6 +7,8 @@
 //
 
 #include "CLDictionaryType.h"
+#include "CLStringType.h"
+#include "CLArrayType.h"
 
 struct CLDictionaryType
 {

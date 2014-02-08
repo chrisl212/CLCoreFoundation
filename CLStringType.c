@@ -60,6 +60,14 @@ CLStringType *CLStringCopy(CLStringType *string)
     return newstr;
 }
 
+CLStringType *CLStringByAppendingString(CLStringType *s1, CLStringType *s2)
+{
+    char *newstr = strdup(s1->str);
+    strcat(newstr, s2->str);
+    CLStringType *str = CLStringTypeCreateWithCString(newstr);
+    return str;
+}
+
 bool _clstrcmp(const char *s1, const char *s2)
 {
     size_t s1len = strlen(s1);
@@ -77,7 +85,7 @@ bool CLStringCompare(CLStringType *str1, CLStringType *str2)
     return _clstrcmp(str1->str, str2->str);
 }
 
-const char *CLStringCString(CLStringType *str)
+char *CLStringCString(CLStringType *str)
 {
-    return str->str;
+    return strdup(str->str);
 }

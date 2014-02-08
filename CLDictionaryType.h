@@ -11,7 +11,12 @@
 #include "CLStringType.h"
 #include "CLArrayType.h"
 
+#ifndef CLDictionaryType_h
+#define CLDictionaryType_h
+
 typedef struct CLDictionaryType CLDictionaryType;
 
 CLDictionaryType *CLDictionaryTypeCreateWithObjectsAndKeys(CLArrayType *, CLArrayType *);
 void *CLDictionaryTypeObjectForKey(CLDictionaryType *, CLStringType *);
+
+#endif
