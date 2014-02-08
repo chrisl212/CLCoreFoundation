@@ -6,9 +6,18 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		63BBCEF018A6D8420019D1A1 /* CLStringType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCEEF18A6D8420019D1A1 /* CLStringType.c */; };
+		63BBCEF318A6DC1D0019D1A1 /* CLArrayType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCEF218A6DC1D0019D1A1 /* CLArrayType.c */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		63BBCEE618A6D6D50019D1A1 /* libCLCoreFoundation.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libCLCoreFoundation.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		63BBCEED18A6D7BC0019D1A1 /* CLCoreFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLCoreFoundation.h; sourceTree = "<group>"; };
+		63BBCEEE18A6D8390019D1A1 /* CLStringType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLStringType.h; sourceTree = "<group>"; };
+		63BBCEEF18A6D8420019D1A1 /* CLStringType.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CLStringType.c; sourceTree = "<group>"; };
+		63BBCEF118A6DBEA0019D1A1 /* CLArrayType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLArrayType.h; sourceTree = "<group>"; };
+		63BBCEF218A6DC1D0019D1A1 /* CLArrayType.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CLArrayType.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +35,10 @@
 			isa = PBXGroup;
 			children = (
 				63BBCEED18A6D7BC0019D1A1 /* CLCoreFoundation.h */,
+				63BBCEEE18A6D8390019D1A1 /* CLStringType.h */,
+				63BBCEEF18A6D8420019D1A1 /* CLStringType.c */,
+				63BBCEF118A6DBEA0019D1A1 /* CLArrayType.h */,
+				63BBCEF218A6DC1D0019D1A1 /* CLArrayType.c */,
 				63BBCEE718A6D6D50019D1A1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +112,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63BBCEF318A6DC1D0019D1A1 /* CLArrayType.c in Sources */,
+				63BBCEF018A6D8420019D1A1 /* CLStringType.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

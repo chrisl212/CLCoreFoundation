@@ -6,9 +6,5 @@
 //  Copyright (c) 2014 A and C Studios. All rights reserved.
 //
 
-#ifndef CLCoreFoundation_CLCoreFoundation_h
-#define CLCoreFoundation_CLCoreFoundation_h
-
-
-
-#endif
+#include "CLStringType.h"
+#include "CLArrayType.h"
