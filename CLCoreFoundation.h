@@ -6,5 +6,4 @@
 //  Copyright (c) 2014 A and C Studios. All rights reserved.
 //
 
-#include "CLStringType.h"
-#include "CLArrayType.h"
+#include "CLDictionaryType.h"

@@ -27,7 +27,7 @@ CLArrayType *CLArrayTypeCreateWithObjects(void *o, ...)
     }
     va_end(list);
     va_start(list, o);
-    retval->objs = malloc(sizeof(void) * count);
+    retval->objs = malloc(100 * count);
     retval->objs[0] = o;
     for (int i = 1; i < count; i++)
     {
@@ -47,5 +47,9 @@ int CLArrayTypeCount(CLArrayType *arr)
 
 void *CLArrayObjectAtIndex(CLArrayType *arr, int ind)
 {
-    return arr->objs[ind];
+    void *o = arr->objs[ind];
+    if (o)
+        return o;
+    else
+        perror("Attempt to access NULL object or index out of bounds."), abort();
 }
