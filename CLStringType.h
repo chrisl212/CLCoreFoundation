@@ -29,8 +29,10 @@ CLStringType *CLStringTypeCreateWithContentsOfPath(const char *);
 CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *);
 CLStringType *CLStringCopy(CLStringType *);
 CLStringType *CLStringByAppendingString(CLStringType *, CLStringType *);
+CLStringType *CLStringByRemovingWhiteSpace(CLStringType *);
 CLMutableArrayType *CLStringComponentsSeparatedByString(CLStringType *, CLStringType *);
 bool CLStringCompare(CLStringType *, CLStringType *);
+bool CLStringContainsString(CLStringType *, CLStringType *);
 char *CLStringCString(CLStringType *);
 
 #endif

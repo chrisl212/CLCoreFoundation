@@ -18,6 +18,8 @@
 		63BBCF1618A6F4540019D1A1 /* CLURLType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF1418A6F4540019D1A1 /* CLURLType.c */; };
 		63BBCF1A18A6FCCD0019D1A1 /* CLMutableArrayType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF1818A6FCCD0019D1A1 /* CLMutableArrayType.c */; };
 		63BBCF1B18A6FEDB0019D1A1 /* CLMutableArrayType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF1818A6FCCD0019D1A1 /* CLMutableArrayType.c */; };
+		63BBCF1D18A705060019D1A1 /* CLInternetRequest.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF1C18A705060019D1A1 /* CLInternetRequest.c */; };
+		63BBCF1E18A705060019D1A1 /* CLInternetRequest.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF1C18A705060019D1A1 /* CLInternetRequest.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +50,7 @@
 		63BBCF1418A6F4540019D1A1 /* CLURLType.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CLURLType.c; sourceTree = "<group>"; };
 		63BBCF1718A6FCC00019D1A1 /* CLMutableArrayType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMutableArrayType.h; sourceTree = "<group>"; };
 		63BBCF1818A6FCCD0019D1A1 /* CLMutableArrayType.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CLMutableArrayType.c; sourceTree = "<group>"; };
+		63BBCF1C18A705060019D1A1 /* CLInternetRequest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CLInternetRequest.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,7 @@
 				63BBCF1318A6F44A0019D1A1 /* CLURLType.h */,
 				63BBCF1418A6F4540019D1A1 /* CLURLType.c */,
 				63BBCF1218A6F1FD0019D1A1 /* CLInternetRequest.h */,
+				63BBCF1C18A705060019D1A1 /* CLInternetRequest.c */,
 				63BBCF0318A6E0170019D1A1 /* test_prog */,
 				63BBCEE718A6D6D50019D1A1 /* Products */,
 			);
@@ -189,6 +193,7 @@
 				63BBCF1018A6E57D0019D1A1 /* CLDictionaryType.c in Sources */,
 				63BBCEF318A6DC1D0019D1A1 /* CLArrayType.c in Sources */,
 				63BBCEF018A6D8420019D1A1 /* CLStringType.c in Sources */,
+				63BBCF1D18A705060019D1A1 /* CLInternetRequest.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +205,7 @@
 				63BBCF0D18A6E1710019D1A1 /* CLArrayType.c in Sources */,
 				63BBCF1618A6F4540019D1A1 /* CLURLType.c in Sources */,
 				63BBCF1118A6E57D0019D1A1 /* CLDictionaryType.c in Sources */,
+				63BBCF1E18A705060019D1A1 /* CLInternetRequest.c in Sources */,
 				63BBCF0518A6E0170019D1A1 /* main.c in Sources */,
 				63BBCF1A18A6FCCD0019D1A1 /* CLMutableArrayType.c in Sources */,
 			);

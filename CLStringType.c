@@ -82,6 +82,21 @@ CLMutableArrayType *CLStringComponentsSeparatedByString(CLStringType *str, CLStr
     return retval;
 }
 
+CLStringType *CLStringByRemovingWhiteSpace(CLStringType *str)
+{
+    const char *s = strdup(str->str);
+    char *p = (char *)s;
+    char ch = ' ';
+    while (*s) {
+        if (*s != ch)
+            *p++ = *s;
+        
+        s++;
+    }
+    *p = 0;
+    return CLStringTypeCreateWithCString(p);
+}
+
 bool _clstrcmp(const char *s1, const char *s2)
 {
     size_t s1len = strlen(s1);
@@ -97,6 +112,13 @@ bool _clstrcmp(const char *s1, const char *s2)
 bool CLStringCompare(CLStringType *str1, CLStringType *str2)
 {
     return _clstrcmp(str1->str, str2->str);
+}
+
+bool CLStringContainsString(CLStringType *s1, CLStringType *s2)
+{
+    if (strstr(s1->str, s2->str))
+        return true;
+    return false;
 }
 
 char *CLStringCString(CLStringType *str)

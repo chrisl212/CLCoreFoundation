@@ -11,3 +11,4 @@
 #include "CLDictionaryType.h"
 #include "CLURLType.h"
 #include "CLMutableArrayType.h"
+#include "CLInternetRequest.h"

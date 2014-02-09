@@ -9,10 +9,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "CLURLType.h"
+#include "CLStringType.h"
 
 #ifndef CLCoreFoundation_CLInternetRequest_h
 #define CLCoreFoundation_CLInternetRequest_h
 
-
+CLStringType *CLInternetRequestContentsOfURL(CLURLType *);
 
 #endif

@@ -12,25 +12,27 @@
 struct CLURLType
 {
     char *path;
+    char *type;
 };
 
 CLURLType *CLURLTypeCreateWithPath(CLStringType *str, CLURLRequestType t)
 {
-    CLStringType *string;
+    CLURLType *url = calloc(1, sizeof(CLURLType));
+    url->path = CLStringCString(str);
     switch (t)
     {
         case CLURLTypeHTTP:
-            string = CLStringByAppendingString(str, CLStringTypeCreateWithCString("http://"));
+            url->type = "http";
             break;
             
         case CLURLTypeFile:
-            string = CLStringByAppendingString(str, CLStringTypeCreateWithCString("file://"));
+            url->type = "file";
             break;
             
         default:
             break;
     }
-    return CLURLTypeCreateWithString(string);
+    return url;
 }
 
 CLURLType *CLURLTypeCreateWithString(CLStringType *s)
