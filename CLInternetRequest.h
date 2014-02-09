@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "CLURLType.h"
 
 #ifndef CLCoreFoundation_CLInternetRequest_h
 #define CLCoreFoundation_CLInternetRequest_h

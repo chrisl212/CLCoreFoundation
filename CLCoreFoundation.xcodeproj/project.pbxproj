@@ -16,6 +16,8 @@
 		63BBCF1118A6E57D0019D1A1 /* CLDictionaryType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF0F18A6E57D0019D1A1 /* CLDictionaryType.c */; };
 		63BBCF1518A6F4540019D1A1 /* CLURLType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF1418A6F4540019D1A1 /* CLURLType.c */; };
 		63BBCF1618A6F4540019D1A1 /* CLURLType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF1418A6F4540019D1A1 /* CLURLType.c */; };
+		63BBCF1918A6FCCD0019D1A1 /* CLMutableArrayType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF1818A6FCCD0019D1A1 /* CLMutableArrayType.c */; };
+		63BBCF1A18A6FCCD0019D1A1 /* CLMutableArrayType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF1818A6FCCD0019D1A1 /* CLMutableArrayType.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +46,8 @@
 		63BBCF1218A6F1FD0019D1A1 /* CLInternetRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLInternetRequest.h; sourceTree = "<group>"; };
 		63BBCF1318A6F44A0019D1A1 /* CLURLType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLURLType.h; sourceTree = "<group>"; };
 		63BBCF1418A6F4540019D1A1 /* CLURLType.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CLURLType.c; sourceTree = "<group>"; };
+		63BBCF1718A6FCC00019D1A1 /* CLMutableArrayType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMutableArrayType.h; sourceTree = "<group>"; };
+		63BBCF1818A6FCCD0019D1A1 /* CLMutableArrayType.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CLMutableArrayType.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 				63BBCEEF18A6D8420019D1A1 /* CLStringType.c */,
 				63BBCEF118A6DBEA0019D1A1 /* CLArrayType.h */,
 				63BBCEF218A6DC1D0019D1A1 /* CLArrayType.c */,
+				63BBCF1718A6FCC00019D1A1 /* CLMutableArrayType.h */,
+				63BBCF1818A6FCCD0019D1A1 /* CLMutableArrayType.c */,
 				63BBCF0E18A6E5710019D1A1 /* CLDictionaryType.h */,
 				63BBCF0F18A6E57D0019D1A1 /* CLDictionaryType.c */,
 				63BBCF1318A6F44A0019D1A1 /* CLURLType.h */,
@@ -178,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63BBCF1918A6FCCD0019D1A1 /* CLMutableArrayType.c in Sources */,
 				63BBCF1518A6F4540019D1A1 /* CLURLType.c in Sources */,
 				63BBCF1018A6E57D0019D1A1 /* CLDictionaryType.c in Sources */,
 				63BBCEF318A6DC1D0019D1A1 /* CLArrayType.c in Sources */,
@@ -194,6 +201,7 @@
 				63BBCF1618A6F4540019D1A1 /* CLURLType.c in Sources */,
 				63BBCF1118A6E57D0019D1A1 /* CLDictionaryType.c in Sources */,
 				63BBCF0518A6E0170019D1A1 /* main.c in Sources */,
+				63BBCF1A18A6FCCD0019D1A1 /* CLMutableArrayType.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

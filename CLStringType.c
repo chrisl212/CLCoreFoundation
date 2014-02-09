@@ -68,6 +68,18 @@ CLStringType *CLStringByAppendingString(CLStringType *s1, CLStringType *s2)
     return str;
 }
 
+CLArrayType *CLStringComponentsSeparatedByString(CLStringType *str, CLStringType *delimit)
+{
+    CLArrayType *retval;
+    char *s = strdup(str->str);
+    while ((s = strtok(s, delimit->str)) != NULL)
+    {
+        
+    }
+    
+    return retval;
+}
+
 bool _clstrcmp(const char *s1, const char *s2)
 {
     size_t s1len = strlen(s1);

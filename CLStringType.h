@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "CLArrayType.h"
 
 #ifndef CLStringType_h
 #define CLStringType_h
@@ -28,6 +29,7 @@ CLStringType *CLStringTypeCreateWithContentsOfPath(const char *);
 CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *);
 CLStringType *CLStringCopy(CLStringType *);
 CLStringType *CLStringByAppendingString(CLStringType *, CLStringType *);
+CLArrayType *CLStringComponentsSeparatedByString(CLStringType *, CLStringType *);
 bool CLStringCompare(CLStringType *, CLStringType *);
 char *CLStringCString(CLStringType *);
 
