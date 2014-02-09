@@ -7,8 +7,14 @@
 //
 
 #include "CLMutableArrayType.h"
+#include "CLArrayType.h"
 
 struct CLMutableArrayType
+{
+    void **objs;
+};
+
+struct CLArrayType
 {
     void **objs;
 };
@@ -52,6 +58,18 @@ CLMutableArrayType *CLMutableArrayTypeCreateWithList(void *o, va_list list, int 
     }
     
     return retval;
+}
+
+CLArrayType *CLMutableArrayImmutableCopy(CLMutableArrayType *arr)
+{
+    CLArrayType *array = CLArrayTypeCreateWithObjects(NULL);
+    int count = CLMutableArrayTypeCount(arr);
+    array->objs = malloc(100 * count);
+    for (int i = 0; i < count; i++)
+    {
+        array->objs[i] = arr->objs[i];
+    }
+    return array;
 }
 
 int CLMutableArrayTypeCount(CLMutableArrayType *arr)

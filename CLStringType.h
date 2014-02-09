@@ -33,6 +33,8 @@ CLStringType *CLStringByAppendingString(CLStringType *, CLStringType *);
 CLStringType *CLStringByRemovingWhiteSpace(CLStringType *);
 CLStringType *CLStringByReplacingFirstStringWithString(CLStringType *, CLStringType *, CLStringType *);
 CLStringType *CLStringByReplacingStringsWithString(CLStringType *, CLStringType *, CLStringType *);
+CLStringType *CLStringWithFormat(CLStringType *, ...);
+CLStringType *CLStringWithListFormat(CLStringType *, va_list);
 CLMutableArrayType *CLStringComponentsSeparatedByString(CLStringType *, CLStringType *);
 bool CLStringCompare(CLStringType *, CLStringType *);
 bool CLStringContainsString(CLStringType *, CLStringType *);

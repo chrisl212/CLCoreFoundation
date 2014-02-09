@@ -48,7 +48,7 @@ CLArrayType *CLArrayTypeCreateWithList(void *o, va_list list, int count)
     retval->objs[0] = o;
     for (int i = 1; i < count; i++)
     {
-        retval->objs[i] = va_arg(list, void *);
+        retval->objs[i] = (void *)va_arg(list, void *);
     }
     
     return retval;

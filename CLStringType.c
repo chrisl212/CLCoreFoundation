@@ -7,6 +7,7 @@
 //
 
 #include "CLStringType.h"
+#include <math.h>
 
 struct CLStringType
 {
@@ -142,6 +143,24 @@ CLStringType *CLStringByReplacingStringsWithString(CLStringType *str, CLStringTy
 	strcpy(r, p);
     
     return CLStringTypeCreateWithCString(ret);
+}
+
+CLStringType *CLStringWithFormat(CLStringType *fmt, ...)
+{
+    va_list list;
+    va_start(list, fmt);
+    CLStringType *final = CLStringWithListFormat(fmt, list);
+    va_end(list);
+    return final;
+}
+
+CLStringType *CLStringWithListFormat(CLStringType *fmt, va_list lst)
+{
+    CLStringType *str = calloc(1, sizeof(CLStringType));
+    str->encoding = CLStringTypeEncodingUTF8;
+    str->str = malloc(pow(strlen(fmt->str), 2));
+    vsprintf(str->str, fmt->str, lst);
+    return str;
 }
 
 bool _clstrcmp(const char *s1, const char *s2)

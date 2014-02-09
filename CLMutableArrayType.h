@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include "CLArrayType.h"
 
 #ifndef CLCoreFoundation_CLMutableArrayType_h
 #define CLCoreFoundation_CLMutableArrayType_h
@@ -18,6 +19,7 @@ typedef struct CLMutableArrayType CLMutableArrayType;
 
 CLMutableArrayType *CLMutableArrayTypeCreateWithObjects(void *, ...);
 CLMutableArrayType *CLMutableArrayTypeCreateWithList(void *, va_list, int);
+CLArrayType *CLMutableArrayImmutableCopy(CLMutableArrayType *);
 int CLMutableArrayTypeCount(CLMutableArrayType *);
 void *CLMutableArrayObjectAtIndex(CLMutableArrayType *, int);
 void CLMutableArrayTypeAddObject(CLMutableArrayType *, void *);
