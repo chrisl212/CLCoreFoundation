@@ -100,13 +100,13 @@ CLStringType *CLStringByRemovingWhiteSpace(CLStringType *str)
     return CLStringTypeCreateWithCString(p);
 }
 
-CLStringType *CLStringByReplacingStringsWithString(CLStringType *s1, CLStringType *s2)
+CLStringType *CLStringByReplacingStringsWithString(CLStringType *str, CLStringType *s1, CLStringType *s2)
 {
-    char *p = s1->str;
+    char *p = str->str;
     //int count = 0;
     while (*p)
     {
-        char *sub = strstr(p, s2->str);
+        char *sub = strstr(p, s1->str);
         strncpy(sub, s2->str, strlen(s2->str));
         p++;
     }

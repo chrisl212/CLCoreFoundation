@@ -30,7 +30,7 @@ CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *);
 CLStringType *CLStringCopy(CLStringType *);
 CLStringType *CLStringByAppendingString(CLStringType *, CLStringType *);
 CLStringType *CLStringByRemovingWhiteSpace(CLStringType *);
-CLStringType *CLStringByReplacingStringsWithString(CLStringType *, CLStringType *);
+CLStringType *CLStringByReplacingStringsWithString(CLStringType *, CLStringType *, CLStringType *);
 CLMutableArrayType *CLStringComponentsSeparatedByString(CLStringType *, CLStringType *);
 bool CLStringCompare(CLStringType *, CLStringType *);
 bool CLStringContainsString(CLStringType *, CLStringType *);
