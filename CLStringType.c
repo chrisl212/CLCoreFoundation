@@ -100,17 +100,48 @@ CLStringType *CLStringByRemovingWhiteSpace(CLStringType *str)
     return CLStringTypeCreateWithCString(p);
 }
 
+CLStringType *CLStringByReplacingFirstStringWithString(CLStringType *str, CLStringType *s1, CLStringType *s2)
+{
+    char *p = strdup(str->str);
+    char *s;
+    if ((s = strstr(p, s1->str)))
+        strncpy(s, s2->str, strlen(s2->str));
+    
+    return CLStringTypeCreateWithCString(p);
+}
+
 CLStringType *CLStringByReplacingStringsWithString(CLStringType *str, CLStringType *s1, CLStringType *s2)
 {
-    char *p = str->str;
-    //int count = 0;
-    while (*p)
-    {
-        char *sub = strstr(p, s1->str);
-        strncpy(sub, s2->str, strlen(s2->str));
-        p++;
-    }
-    return CLStringTypeCreateWithCString(p);
+	char *ret, *r;
+	const char *p, *q;
+    const char *string = str->str;
+    const char *old, *new;
+    old = s1->str;
+    new = s2->str;
+	size_t oldlen = strlen(old);
+	size_t count, retlen, newlen = strlen(new);
+    
+	if (oldlen != newlen) {
+		for (count = 0, p = string; (q = strstr(p, old)) != NULL; p = q + oldlen)
+			count++;
+		/* this is undefined if p - str > PTRDIFF_MAX */
+		retlen = p - string + strlen(p) + count * (newlen - oldlen);
+	} else
+		retlen = strlen(string);
+    
+	if ((ret = malloc(retlen + 1)) == NULL)
+		return NULL;
+    
+	for (r = ret, p = string; (q = strstr(p, old)) != NULL; p = q + oldlen) {
+		signed long l = q - p;
+		memcpy(r, p, l);
+		r += l;
+		memcpy(r, new, newlen);
+		r += newlen;
+	}
+	strcpy(r, p);
+    
+    return CLStringTypeCreateWithCString(ret);
 }
 
 bool _clstrcmp(const char *s1, const char *s2)

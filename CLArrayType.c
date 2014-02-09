@@ -38,6 +38,22 @@ CLArrayType *CLArrayTypeCreateWithObjects(void *o, ...)
     return retval;
 }
 
+CLArrayType *CLArrayTypeCreateWithList(void *o, va_list list, int count)
+{
+    CLArrayType *retval = calloc(1, sizeof(CLArrayType));
+    if (!o)
+        return retval;
+
+    retval->objs = malloc(100 * count);
+    retval->objs[0] = o;
+    for (int i = 1; i < count; i++)
+    {
+        retval->objs[i] = va_arg(list, void *);
+    }
+    
+    return retval;
+}
+
 int CLArrayTypeCount(CLArrayType *arr)
 {
     int c = 0;

@@ -38,6 +38,22 @@ CLMutableArrayType *CLMutableArrayTypeCreateWithObjects(void *o, ...)
     return retval;
 }
 
+CLMutableArrayType *CLMutableArrayTypeCreateWithList(void *o, va_list list, int count)
+{
+    CLMutableArrayType *retval = calloc(1, sizeof(CLMutableArrayType));
+    if (!o)
+        return retval;
+    
+    retval->objs = malloc(100 * count);
+    retval->objs[0] = o;
+    for (int i = 1; i < count; i++)
+    {
+        retval->objs[i] = va_arg(list, void *);
+    }
+    
+    return retval;
+}
+
 int CLMutableArrayTypeCount(CLMutableArrayType *arr)
 {
     if (!arr->objs)

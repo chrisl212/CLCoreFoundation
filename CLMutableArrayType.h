@@ -17,6 +17,7 @@
 typedef struct CLMutableArrayType CLMutableArrayType;
 
 CLMutableArrayType *CLMutableArrayTypeCreateWithObjects(void *, ...);
+CLMutableArrayType *CLMutableArrayTypeCreateWithList(void *, va_list, int);
 int CLMutableArrayTypeCount(CLMutableArrayType *);
 void *CLMutableArrayObjectAtIndex(CLMutableArrayType *, int);
 void CLMutableArrayTypeAddObject(CLMutableArrayType *, void *);

@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory.h>
 #include <string.h>
 #include <stdbool.h>
 #include "CLMutableArrayType.h"
@@ -30,6 +31,7 @@ CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *);
 CLStringType *CLStringCopy(CLStringType *);
 CLStringType *CLStringByAppendingString(CLStringType *, CLStringType *);
 CLStringType *CLStringByRemovingWhiteSpace(CLStringType *);
+CLStringType *CLStringByReplacingFirstStringWithString(CLStringType *, CLStringType *, CLStringType *);
 CLStringType *CLStringByReplacingStringsWithString(CLStringType *, CLStringType *, CLStringType *);
 CLMutableArrayType *CLStringComponentsSeparatedByString(CLStringType *, CLStringType *);
 bool CLStringCompare(CLStringType *, CLStringType *);
