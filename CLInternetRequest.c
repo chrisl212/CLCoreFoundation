@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 A and C Studios. All rights reserved.
 //
 
-#include "CLInternetRequest.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/socket.h>
@@ -15,6 +14,7 @@
 #include <errno.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include "CLInternetRequest.h"
 
 #define PORT 80
 
@@ -121,6 +121,7 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
             contentlength = strtoll(lengthstr, NULL, 0);
         }
     }
+    
     if (contentlength > 0)
     {
         buf = malloc(contentlength);
