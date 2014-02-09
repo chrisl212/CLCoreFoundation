@@ -100,6 +100,19 @@ CLStringType *CLStringByRemovingWhiteSpace(CLStringType *str)
     return CLStringTypeCreateWithCString(p);
 }
 
+CLStringType *CLStringByReplacingStringsWithString(CLStringType *s1, CLStringType *s2)
+{
+    char *p = s1->str;
+    //int count = 0;
+    while (*p)
+    {
+        char *sub = strstr(p, s2->str);
+        strncpy(sub, s2->str, strlen(s2->str));
+        p++;
+    }
+    return CLStringTypeCreateWithCString(p);
+}
+
 bool _clstrcmp(const char *s1, const char *s2)
 {
     size_t s1len = strlen(s1);
