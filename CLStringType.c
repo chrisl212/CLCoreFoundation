@@ -71,14 +71,17 @@ CLStringType *CLStringByAppendingString(CLStringType *s1, CLStringType *s2)
 CLMutableArrayType *CLStringComponentsSeparatedByString(CLStringType *str, CLStringType *delimit)
 {
     CLMutableArrayType *retval = CLMutableArrayTypeCreateWithObjects(NULL);
+    
     char *s = CLStringCString(str);
-    char *s1 = strtok(s, delimit->str);
+    char *sv;
+    char *s1 = strtok_r(s, delimit->str, &sv);
     while (s1 != NULL)
     {
         CLStringType *newstr = CLStringTypeCreateWithCString(s1);
         CLMutableArrayTypeAddObject(retval, newstr);
-        s1 = strtok(NULL, delimit->str);
+        s1 = strtok_r(NULL, delimit->str, &sv);
     }
+    
     return retval;
 }
 
@@ -116,6 +119,8 @@ bool CLStringCompare(CLStringType *str1, CLStringType *str2)
 
 bool CLStringContainsString(CLStringType *s1, CLStringType *s2)
 {
+    if (!s1 || !s2)
+        return false;
     if (strstr(s1->str, s2->str))
         return true;
     return false;

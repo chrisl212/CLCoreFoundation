@@ -107,7 +107,10 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
     CLStringType *headerstr = CLStringTypeCreateWithCString(buf);
     //free(buf);
     
-    CLMutableArrayType *headers = CLStringComponentsSeparatedByString(headerstr, CLStringTypeCreateWithCString("\n"));
+    CLMutableArrayType *headerandbody = CLStringComponentsSeparatedByString(headerstr, CLStringTypeCreateWithCString("\r\n\r\n"));
+    CLStringType *headerString = CLMutableArrayObjectAtIndex(headerandbody, 0);
+    CLMutableArrayType *headers = CLStringComponentsSeparatedByString(headerString, CLStringTypeCreateWithCString("\r\n"));
+    
     int header_count = CLMutableArrayTypeCount(headers);
     long long contentlength = 0;
     CLStringType *chk = CLStringTypeCreateWithCString("Content-Length");
@@ -121,7 +124,7 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
             contentlength = strtoll(lengthstr, NULL, 0);
         }
     }
-    
+    free(buf);
     if (contentlength > 0)
     {
         buf = malloc(contentlength);
@@ -144,7 +147,7 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
     }
 
     
-	printf("client: received '%s'\n",buf);
+	printf("client: received '%s'\n", buf);
     
 	close(sockfd);
     retval = CLStringTypeCreateWithCString(buf);
