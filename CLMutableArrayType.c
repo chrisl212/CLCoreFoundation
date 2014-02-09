@@ -40,6 +40,8 @@ CLMutableArrayType *CLMutableArrayTypeCreateWithObjects(void *o, ...)
 
 int CLMutableArrayTypeCount(CLMutableArrayType *arr)
 {
+    if (!arr->objs)
+        return 0;
     int c = 0;
     for (; arr->objs[c] != NULL; c++);
     return c;
@@ -63,7 +65,6 @@ void CLMutableArrayTypeAddObject(CLMutableArrayType *arr, void *o)
     {
         newobjs[i] = arr->objs[i];
     }
-    newobjs[i + 1] = o;
-    free(arr->objs);
+    newobjs[i] = o;
     arr->objs = newobjs;
 }

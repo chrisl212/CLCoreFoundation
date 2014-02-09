@@ -11,15 +11,35 @@
 
 int main(int argc, const char * argv[])
 {
+    puts("-----------------\nString Tests");
     CLStringType *str = CLStringTypeCreateWithCString("Hello, World!");
-    CLArrayType *arr = CLArrayTypeCreateWithObjects(str, NULL);
     puts(CLStringCString(str));
+    CLMutableArrayType *comps = CLStringComponentsSeparatedByString(str, CLStringTypeCreateWithCString(","));
+    int cnt = CLMutableArrayTypeCount(comps);
+    for (int i = 0; i < cnt; i++)
+    {
+        puts(CLStringCString(CLMutableArrayObjectAtIndex(comps, i)));
+    }
+    
+    puts("-----------------\nArray Tests");
+    CLArrayType *arr = CLArrayTypeCreateWithObjects(str, NULL);
     int c = CLArrayTypeCount(arr);
     for (int i = 0; i < c; i++)
     {
         void *b = CLArrayObjectAtIndex(arr, i);
         printf("%s\n", CLStringCString(b));
     }
+    
+    puts("-----------------\nMutable Array Tests");
+    CLMutableArrayType *mutablearr = CLMutableArrayTypeCreateWithObjects(str, NULL);
+    CLMutableArrayTypeAddObject(mutablearr, CLStringTypeCreateWithCString("schnitzel"));
+    int co = CLMutableArrayTypeCount(mutablearr);
+    for (int i = 0; i < co; i++)
+    {
+        void *b = CLMutableArrayObjectAtIndex(mutablearr, i);
+        printf("%s\n", CLStringCString(b));
+    }
+    
     puts("-----------------\nDictionary Tests");
     CLArrayType *objs = CLArrayTypeCreateWithObjects("hello", "world", "it's chris", NULL);
     
@@ -30,5 +50,7 @@ int main(int argc, const char * argv[])
     CLArrayType *keys = CLArrayTypeCreateWithObjects(key1, key2, key3, NULL);
     CLDictionaryType *dict = CLDictionaryTypeCreateWithObjectsAndKeys(objs, keys);
     puts(CLDictionaryTypeObjectForKey(dict, key3));
+    
+    puts("-----------------\nInternet Tests");
     return 0;
 }

@@ -68,15 +68,17 @@ CLStringType *CLStringByAppendingString(CLStringType *s1, CLStringType *s2)
     return str;
 }
 
-CLArrayType *CLStringComponentsSeparatedByString(CLStringType *str, CLStringType *delimit)
+CLMutableArrayType *CLStringComponentsSeparatedByString(CLStringType *str, CLStringType *delimit)
 {
-    CLArrayType *retval;
-    char *s = strdup(str->str);
-    while ((s = strtok(s, delimit->str)) != NULL)
+    CLMutableArrayType *retval = CLMutableArrayTypeCreateWithObjects(NULL);
+    char *s = CLStringCString(str);
+    char *s1 = strtok(s, delimit->str);
+    while (s1 != NULL)
     {
-        
+        CLStringType *newstr = CLStringTypeCreateWithCString(s1);
+        CLMutableArrayTypeAddObject(retval, newstr);
+        s1 = strtok(NULL, delimit->str);
     }
-    
     return retval;
 }
 

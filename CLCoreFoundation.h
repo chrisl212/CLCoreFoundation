@@ -10,3 +10,4 @@
 #include "CLArrayType.h"
 #include "CLDictionaryType.h"
 #include "CLURLType.h"
+#include "CLMutableArrayType.h"
