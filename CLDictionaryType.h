@@ -17,6 +17,8 @@
 typedef struct CLDictionaryType CLDictionaryType;
 
 CLDictionaryType *CLDictionaryTypeCreateWithObjectsAndKeys(CLArrayType *, CLArrayType *);
+CLArrayType *CLDictionaryAllObjects(CLDictionaryType *);
+CLArrayType *CLDictionaryAllKeys(CLDictionaryType *);
 void *CLDictionaryTypeObjectForKey(CLDictionaryType *, CLStringType *);
 
 #endif

@@ -24,6 +24,16 @@ CLDictionaryType *CLDictionaryTypeCreateWithObjectsAndKeys(CLArrayType *objects,
     return dict;
 }
 
+CLArrayType *CLDictionaryAllObjects(CLDictionaryType *d)
+{
+    return d->objs;
+}
+
+CLArrayType *CLDictionaryAllKeys(CLDictionaryType *d)
+{
+    return d->keys;
+}
+
 void *CLDictionaryTypeObjectForKey(CLDictionaryType *dict, CLStringType *objectkey)
 {
     int count = CLArrayTypeCount(dict->keys);

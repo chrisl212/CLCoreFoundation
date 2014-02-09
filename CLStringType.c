@@ -63,7 +63,8 @@ CLStringType *CLStringCopy(CLStringType *string)
 
 CLStringType *CLStringByAppendingString(CLStringType *s1, CLStringType *s2)
 {
-    char *newstr = strdup(s1->str);
+    char *newstr = malloc(strlen(s1->str) + strlen(s2->str) + 1);
+    strcpy(newstr, s1->str);
     strcat(newstr, s2->str);
     CLStringType *str = CLStringTypeCreateWithCString(newstr);
     return str;
