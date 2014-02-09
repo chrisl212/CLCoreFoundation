@@ -34,5 +34,6 @@ CLMutableArrayType *CLStringComponentsSeparatedByString(CLStringType *, CLString
 bool CLStringCompare(CLStringType *, CLStringType *);
 bool CLStringContainsString(CLStringType *, CLStringType *);
 char *CLStringCString(CLStringType *);
+int CLStringLength(CLStringType *);
 
 #endif

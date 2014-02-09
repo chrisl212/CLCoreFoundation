@@ -130,3 +130,8 @@ char *CLStringCString(CLStringType *str)
 {
     return strdup(str->str);
 }
+
+int CLStringLength(CLStringType *str)
+{
+    return (int)strlen(str->str);
+}
