@@ -35,7 +35,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		63BBCEE618A6D6D50019D1A1 /* libCLCoreFoundation.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libCLCoreFoundation.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		63BBCEE618A6D6D50019D1A1 /* libclcore.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libclcore.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		63BBCEED18A6D7BC0019D1A1 /* CLCoreFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLCoreFoundation.h; sourceTree = "<group>"; };
 		63BBCEEE18A6D8390019D1A1 /* CLStringType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLStringType.h; sourceTree = "<group>"; };
 		63BBCEEF18A6D8420019D1A1 /* CLStringType.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CLStringType.c; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 		63BBCEE718A6D6D50019D1A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				63BBCEE618A6D6D50019D1A1 /* libCLCoreFoundation.dylib */,
+				63BBCEE618A6D6D50019D1A1 /* libclcore.dylib */,
 				63BBCF0218A6E0170019D1A1 /* test_prog */,
 			);
 			name = Products;
@@ -136,7 +136,7 @@
 			);
 			name = CLCoreFoundation;
 			productName = CLCoreFoundation;
-			productReference = 63BBCEE618A6D6D50019D1A1 /* libCLCoreFoundation.dylib */;
+			productReference = 63BBCEE618A6D6D50019D1A1 /* libclcore.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		63BBCF0118A6E0170019D1A1 /* test_prog */ = {
@@ -286,7 +286,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/libclcore";
+				PRODUCT_NAME = clcore;
 			};
 			name = Debug;
 		};
@@ -294,7 +295,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/libclcore";
+				PRODUCT_NAME = clcore;
 			};
 			name = Release;
 		};
@@ -335,6 +337,7 @@
 				63BBCEEC18A6D6D50019D1A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		63BBCF0818A6E0170019D1A1 /* Build configuration list for PBXNativeTarget "test_prog" */ = {
 			isa = XCConfigurationList;
@@ -343,6 +346,7 @@
 				63BBCF0A18A6E0170019D1A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
