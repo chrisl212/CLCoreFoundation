@@ -35,7 +35,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6364C6E518A8599700CE18A3 /* MakeFile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; path = MakeFile; sourceTree = "<group>"; };
+		6364C6E518A8599700CE18A3 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; path = Makefile; sourceTree = "<group>"; };
 		63BBCEE618A6D6D50019D1A1 /* libclcore.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libclcore.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		63BBCEED18A6D7BC0019D1A1 /* CLCoreFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLCoreFoundation.h; sourceTree = "<group>"; };
 		63BBCEEE18A6D8390019D1A1 /* CLStringType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLStringType.h; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 				63BBCF1418A6F4540019D1A1 /* CLURLType.c */,
 				63BBCF1218A6F1FD0019D1A1 /* CLInternetRequest.h */,
 				63BBCF1C18A705060019D1A1 /* CLInternetRequest.c */,
-				6364C6E518A8599700CE18A3 /* MakeFile */,
+				6364C6E518A8599700CE18A3 /* Makefile */,
 				63BBCF0318A6E0170019D1A1 /* test_prog */,
 				63BBCEE718A6D6D50019D1A1 /* Products */,
 			);
