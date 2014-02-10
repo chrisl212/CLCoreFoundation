@@ -1,9 +1,9 @@
 library:
-\tgcc -c CLStringType.c -o CLStringType.o
-\tgcc -c CLArrayType.c -o CLArrayType.o
-\tgcc -c CLMutableArrayType.c -o CLMutableArrayType.o
-\tgcc -c CLDictionaryType.c -o CLDictionaryType.o
-\tgcc -c CLURLType.c -o CLURLType.o
-\tgcc -c CLInternetRequest.c -o CLInternetRequest.o
-\tgcc -o output CLStringType.o CLArrayType.o CLMutableArrayType.o CLDictionaryType.o CLURLType.o CLInternetRequest.o -lobjc
-\tlibtool --mode=link gcc -g -O -o libclcore.a
+	gcc std=c99 -c CLStringType.c -o CLStringType.o
+	gcc std=c99 -c CLArrayType.c -o CLArrayType.o
+	gcc std=c99 -c CLMutableArrayType.c -o CLMutableArrayType.o
+	gcc std=c99 -c CLDictionaryType.c -o CLDictionaryType.o
+	gcc std=c99 -c CLURLType.c -o CLURLType.o
+	gcc std=c99 -c CLInternetRequest.c -o CLInternetRequest.o
+	gcc std=c99 -o output CLStringType.o CLArrayType.o CLMutableArrayType.o CLDictionaryType.o CLURLType.o CLInternetRequest.o -lobjc
+	libtool --mode=link gcc std=c99 -g -O -o libclcore.a
