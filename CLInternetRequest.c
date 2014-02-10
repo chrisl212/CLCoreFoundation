@@ -20,8 +20,8 @@
 
 struct CLURLType
 {
-    char *path;
-    char *type;
+    CLStringType *path;
+    CLStringType *type;
 };
 
 struct CLStringType
@@ -52,7 +52,7 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 
-    CLMutableArrayType *comps = CLStringComponentsSeparatedByString(CLStringTypeCreateWithCString(url->path), CLStringTypeCreateWithCString("/"));
+    CLMutableArrayType *comps = CLStringComponentsSeparatedByString(url->path, CLStringTypeCreateWithCString("/"));
     CLStringType *baseServer = CLMutableArrayObjectAtIndex(comps, 0);
     
     int count = CLMutableArrayTypeCount(comps);
@@ -63,7 +63,7 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
     }
     
     
-	if ((rv = getaddrinfo(CLStringCString(baseServer), url->type, &hints, &servinfo)) != 0) {
+	if ((rv = getaddrinfo(CLStringCString(baseServer), CLStringCString(url->type), &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 
 	}
@@ -97,32 +97,25 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
 	freeaddrinfo(servinfo); // all done with this structure
     
     char request[300];
-    sprintf(request, "GET /%s HTTP/1.1\r\nHost: %s\r\n\r\n", CLStringCString(restOfURL), CLStringCString(baseServer));
+    sprintf(request, "GET /%s HTTP/1.1\r\nHost:%s\r\n\r\n", CLStringCString(restOfURL), CLStringCString(baseServer));
     send(sockfd, request, strlen(request), 0);
     char *buf = malloc(400);
     if ((numbytes = (int)recv(sockfd, buf, 400 - 1, 0)) == -1) {
 	    perror("recv");
 	    exit(1);
 	}
+    buf[numbytes] = '\0';
     CLStringType *headerstr = CLStringTypeCreateWithCString(buf);
     //free(buf);
     
-    CLMutableArrayType *headerandbody = CLStringComponentsSeparatedByString(headerstr, CLStringTypeCreateWithCString("\r\n\r\n"));
-    CLStringType *headerString = CLMutableArrayObjectAtIndex(headerandbody, 0);
-    CLMutableArrayType *headers = CLStringComponentsSeparatedByString(headerString, CLStringTypeCreateWithCString("\r\n"));
+    CLMutableArrayType *headers = CLStringComponentsSeparatedByString(headerstr, CLStringTypeCreateWithCString("\n"));
     
     int header_count = CLMutableArrayTypeCount(headers);
     long long contentlength = 0;
     CLStringType *chk = CLStringTypeCreateWithCString("Content-Length");
     for (int i = 0; i < header_count; i++)
     {
-        CLStringType *header = CLMutableArrayObjectAtIndex(headers, i);
-        if (header->str && CLStringContainsString(header, chk))
-        {
-            CLMutableArrayType *comps = CLStringComponentsSeparatedByString(header, CLStringTypeCreateWithCString(":"));
-            const char *lengthstr = CLStringCString(CLStringByRemovingWhiteSpace(CLMutableArrayObjectAtIndex(comps, 1)));
-            contentlength = strtoll(lengthstr, NULL, 0);
-        }
+
     }
     free(buf);
     if (contentlength > 0)
