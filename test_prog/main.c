@@ -16,7 +16,8 @@ int main(int argc, const char * argv[])
     puts(CLStringCString(str));
     CLMutableArrayType *comps = CLStringComponentsSeparatedByString(str, CLStringTypeCreateWithCString(","));
     int cnt = CLMutableArrayTypeCount(comps);
-    for (int i = 0; i < cnt; i++)
+    int i = 0;
+    for (; i < cnt; i++)
     {
         puts(CLStringCString(CLMutableArrayObjectAtIndex(comps, i)));
     }
@@ -24,7 +25,8 @@ int main(int argc, const char * argv[])
     puts("-----------------\nArray Tests");
     CLArrayType *arr = CLArrayTypeCreateWithObjects(str, NULL);
     int c = CLArrayTypeCount(arr);
-    for (int i = 0; i < c; i++)
+    int i = 0;
+    for (; i < c; i++)
     {
         void *b = CLArrayObjectAtIndex(arr, i);
         printf("%s\n", CLStringCString(b));
@@ -34,7 +36,8 @@ int main(int argc, const char * argv[])
     CLMutableArrayType *mutablearr = CLMutableArrayTypeCreateWithObjects(str, NULL);
     CLMutableArrayTypeAddObject(mutablearr, CLStringTypeCreateWithCString("schnitzel"));
     int co = CLMutableArrayTypeCount(mutablearr);
-    for (int i = 0; i < co; i++)
+    int i = 0;
+    for (; i < co; i++)
     {
         void *b = CLMutableArrayObjectAtIndex(mutablearr, i);
         printf("%s\n", CLStringCString(b));

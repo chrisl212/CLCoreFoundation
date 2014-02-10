@@ -36,7 +36,8 @@ CLArrayType *CLArrayTypeCreateWithObjects(void *o, ...)
     va_start(list, o);
     retval->objs = malloc(100 * count);
     retval->objs[0] = o;
-    for (int i = 1; i < count; i++)
+    int i = 1;
+    for (; i < count; i++)
     {
         retval->objs[i] = va_arg(list, void *);
     }
@@ -53,7 +54,8 @@ CLArrayType *CLArrayTypeCreateWithList(void *o, va_list list, int count)
 
     retval->objs = malloc(100 * count);
     retval->objs[0] = o;
-    for (int i = 1; i < count; i++)
+    int i = 1;
+    for (; i < count; i++)
     {
         retval->objs[i] = (void *)va_arg(list, void *);
     }
@@ -65,7 +67,8 @@ void *CLArrayTypeMutableCopy(CLArrayType *a)
 {
     CLMutableArrayType *arr = calloc(1, sizeof(CLMutableArrayType));
     int count = CLArrayTypeCount(a);
-    for (int i = 0; i < count; i++)
+    int i = 0;
+    for (; i < count; i++)
     {
         memcpy(arr->objs[i], a->objs[i], sizeof(a->objs[i]));
     }

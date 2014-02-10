@@ -37,7 +37,8 @@ CLArrayType *CLDictionaryAllKeys(CLDictionaryType *d)
 void *CLDictionaryTypeObjectForKey(CLDictionaryType *dict, CLStringType *objectkey)
 {
     int count = CLArrayTypeCount(dict->keys);
-    for (int i = 0; i < count; i++)
+    int i = 0;
+    for (; i < count; i++)
     {
         CLStringType *key = CLArrayObjectAtIndex(dict->keys, i);
         if (CLStringCompare(key, objectkey) == true)

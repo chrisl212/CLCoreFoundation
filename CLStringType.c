@@ -170,7 +170,8 @@ bool _clstrcmp(const char *s1, const char *s2)
     size_t s2len = strlen(s2);
     if (s1len != s2len)
         return false;
-    for (int i = 0; i < s1len; i++)
+    int i = 0;
+    for (; i < s1len; i++)
         if (s1[i] != s2[i])
             return false;
     return true;
