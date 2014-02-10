@@ -1,0 +1,9 @@
+library:
+    gcc -c CLStringType.c -o CLStringType.o
+    gcc -c CLArrayType.c -o CLArrayType.o
+    gcc -c CLMutableArrayType.c -o CLMutableArrayType.o
+    gcc -c CLDictionaryType.c -o CLDictionaryType.o
+    gcc -c CLURLType.c -o CLURLType.o
+    gcc -c CLInternetRequest.c -o CLInternetRequest.o
+    gcc -o output CLStringType.o CLArrayType.o CLMutableArrayType.o CLDictionaryType.o CLURLType.o CLInternetRequest.o -lobjc
+    libtool --mode=link gcc -g -O -o libclcore.a
