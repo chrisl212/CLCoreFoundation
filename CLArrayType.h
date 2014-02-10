@@ -17,6 +17,7 @@ typedef struct CLArrayType CLArrayType;
 
 CLArrayType *CLArrayTypeCreateWithObjects(void *, ...);
 CLArrayType *CLArrayTypeCreateWithList(void *, va_list, int);
+void *CLArrayTypeMutableCopy(CLArrayType *);
 int CLArrayTypeCount(CLArrayType *);
 void *CLArrayObjectAtIndex(CLArrayType *, int);
 

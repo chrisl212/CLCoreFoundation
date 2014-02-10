@@ -21,5 +21,7 @@ typedef enum
 
 CLURLType *CLURLTypeCreateWithPath(CLStringType *, CLURLRequestType);
 CLURLType *CLURLTypeCreateWithString(CLStringType *);
+CLStringType *CLURLStringValue(CLURLType *);
+CLStringType *CLURLTypeString(CLURLType *);
 
 #endif
