@@ -5,5 +5,5 @@ library:
 	gcc -c CLDictionaryType.c
 	gcc -c CLURLType.c
 	gcc -c CLInternetRequest.c
-	gcc -shared -o libclcore.so CLStringType.o CLArrayType.o CLMutableArrayType.o CLDictionaryType.o CLURLType.o CLInternetRequest.o -lobjc
+	gcc -shared -o libclcore.so CLStringType.o CLArrayType.o CLMutableArrayType.o CLDictionaryType.o CLURLType.o CLInternetRequest.o
 	rm CLStringType.o CLArrayType.o CLMutableArrayType.o CLDictionaryType.o CLURLType.o CLInternetRequest.o
