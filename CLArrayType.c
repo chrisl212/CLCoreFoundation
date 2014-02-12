@@ -66,7 +66,8 @@ CLArrayType *CLArrayTypeCreateWithList(void *o, va_list list, int count)
 void *CLArrayTypeMutableCopy(CLArrayType *a)
 {
     CLMutableArrayType *arr = calloc(1, sizeof(CLMutableArrayType));
-    int count = CLArrayTypeCount(a);
+    int count = CLArrayTypeCount(a) - 1;
+    arr->objs = calloc(count + 1, 100);
     int i = 0;
     for (; i < count; i++)
     {
@@ -84,9 +85,45 @@ int CLArrayTypeCount(CLArrayType *arr)
 
 void *CLArrayObjectAtIndex(CLArrayType *arr, int ind)
 {
+    int max = CLArrayTypeCount(arr) - 1;
+    if (ind > max)
+        fputs("Index out of bounds", stderr);
     void *o = arr->objs[ind];
     if (o)
         return o;
     else
-        perror("Attempt to access NULL object or index out of bounds."), abort();
+        fputs("Attempt to access NULL object", stderr), abort();
+}
+
+bool CLArrayContainsObject(CLArrayType *arr, void *o)
+{
+    int i = 0;
+    int count = CLArrayTypeCount(arr) - 1;
+    for (; i < count; i++)
+    {
+        if (CLArrayObjectAtIndex(arr, i) == o)
+            return true;
+    }
+    return false;
+}
+
+CLArrayType *CLArrayCopy(CLArrayType *a)
+{
+    int count = CLArrayTypeCount(a) - 1;
+    int i = 0;
+    CLArrayType *arr = calloc(1, sizeof(CLArrayType));
+    arr->objs = calloc(count + 1, 100);
+    for (; i < count; i++)
+    {
+        void *np = malloc(sizeof(a->objs[i]));
+        memcpy(np, a->objs[i], sizeof(a->objs[i]));
+        arr->objs[i] = np;
+    }
+    return arr;
+}
+
+void CLArrayRelease(CLArrayType *a)
+{
+    free(a->objs);
+    free(a);
 }

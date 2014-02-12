@@ -86,15 +86,23 @@ int CLMutableArrayTypeCount(CLMutableArrayType *arr)
 
 void *CLMutableArrayObjectAtIndex(CLMutableArrayType *arr, int ind)
 {
+    int max = CLMutableArrayTypeCount(arr) - 1;
+    if (ind > max)
+        fputs("Index out of bounds", stderr);
     void *o = arr->objs[ind];
     if (o)
         return o;
     else
-        perror("Attempt to access NULL object or index out of bounds."), abort();
+        fputs("Attempt to access NULL object", stderr), abort();
 }
 
 void CLMutableArrayTypeAddObject(CLMutableArrayType *arr, void *o)
 {
+    if (!o)
+    {
+        fputs("Attempt to insert a NULL object into an array.", stderr);
+        return;
+    }
     int count = CLMutableArrayTypeCount(arr);
     void **newobjs = malloc(100 * (count + 1));
     int i;
@@ -104,4 +112,37 @@ void CLMutableArrayTypeAddObject(CLMutableArrayType *arr, void *o)
     }
     newobjs[i] = o;
     arr->objs = newobjs;
+}
+
+bool CLMutableArrayContainsObject(CLMutableArrayType *a, void *o)
+{
+    int i = 0;
+    int count = CLMutableArrayTypeCount(a);
+    for (; i < count; i++)
+    {
+        if (CLMutableArrayObjectAtIndex(a, i) == o)
+            return true;
+    }
+    return false;
+}
+
+CLMutableArrayType *CLMutableArrayCopy(CLMutableArrayType *a)
+{
+    int count = CLMutableArrayTypeCount(a) - 1;
+    int i = 0;
+    CLMutableArrayType *arr = calloc(1, sizeof(CLMutableArrayType));
+    arr->objs = calloc(count + 1, 100);
+    for (; i < count; i++)
+    {
+        void *np = malloc(sizeof(a->objs[i]));
+        memcpy(np, a->objs[i], sizeof(a->objs[i]));
+        arr->objs[i] = np;
+    }
+    return arr;
+}
+
+void CLMutableArrayRelease(CLMutableArrayType *a)
+{
+    free(a->objs);
+    free(a);
 }

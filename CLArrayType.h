@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdbool.h>
+#include <memory.h>
 
 #ifndef CLArrayType_h
 #define CLArrayType_h
@@ -20,5 +22,8 @@ CLArrayType *CLArrayTypeCreateWithList(void *, va_list, int);
 void *CLArrayTypeMutableCopy(CLArrayType *);
 int CLArrayTypeCount(CLArrayType *);
 void *CLArrayObjectAtIndex(CLArrayType *, int);
+bool CLArrayContainsObject(CLArrayType *, void *);
+CLArrayType *CLArrayCopy(CLArrayType *);
+void CLArrayRelease(CLArrayType *);
 
 #endif
