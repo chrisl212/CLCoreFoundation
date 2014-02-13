@@ -36,7 +36,7 @@ CLArrayType *CLDictionaryAllKeys(CLDictionaryType *d)
 
 void *CLDictionaryTypeObjectForKey(CLDictionaryType *dict, CLStringType *objectkey)
 {
-    int count = CLArrayTypeCount(dict->keys);
+    size_t count = CLArrayTypeCount(dict->keys);
     int i = 0;
     for (; i < count; i++)
     {

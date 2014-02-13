@@ -11,11 +11,13 @@
 
 struct CLMutableArrayType
 {
+    size_t count;
     void **objs;
 };
 
 struct CLArrayType
 {
+    size_t count;
     void **objs;
 };
 
@@ -65,7 +67,7 @@ CLMutableArrayType *CLMutableArrayTypeCreateWithList(void *o, va_list list, int 
 CLArrayType *CLMutableArrayImmutableCopy(CLMutableArrayType *arr)
 {
     CLArrayType *array = CLArrayTypeCreateWithObjects(NULL);
-    int count = CLMutableArrayTypeCount(arr);
+    size_t count = CLMutableArrayTypeCount(arr);
     array->objs = malloc(100 * count);
     int i = 0;
     for (; i < count; i++)
@@ -75,18 +77,14 @@ CLArrayType *CLMutableArrayImmutableCopy(CLMutableArrayType *arr)
     return array;
 }
 
-int CLMutableArrayTypeCount(CLMutableArrayType *arr)
+size_t CLMutableArrayTypeCount(CLMutableArrayType *arr)
 {
-    if (!arr->objs)
-        return 0;
-    int c = 0;
-    for (; arr->objs[c] != NULL; c++);
-    return c;
+    return arr->count;
 }
 
 void *CLMutableArrayObjectAtIndex(CLMutableArrayType *arr, int ind)
 {
-    int max = CLMutableArrayTypeCount(arr) - 1;
+    size_t max = CLMutableArrayTypeCount(arr) - 1;
     if (ind > max)
         fputs("Index out of bounds", stderr);
     void *o = arr->objs[ind];
@@ -103,7 +101,7 @@ void CLMutableArrayTypeAddObject(CLMutableArrayType *arr, void *o)
         fputs("Attempt to insert a NULL object into an array.", stderr);
         return;
     }
-    int count = CLMutableArrayTypeCount(arr);
+    size_t count = CLMutableArrayTypeCount(arr);
     void **newobjs = malloc(100 * (count + 1));
     int i;
     for (i = 0; i < count; i++)
@@ -112,12 +110,13 @@ void CLMutableArrayTypeAddObject(CLMutableArrayType *arr, void *o)
     }
     newobjs[i] = o;
     arr->objs = newobjs;
+    arr->count++;
 }
 
 bool CLMutableArrayContainsObject(CLMutableArrayType *a, void *o)
 {
     int i = 0;
-    int count = CLMutableArrayTypeCount(a);
+    size_t count = CLMutableArrayTypeCount(a);
     for (; i < count; i++)
     {
         if (CLMutableArrayObjectAtIndex(a, i) == o)
@@ -128,7 +127,7 @@ bool CLMutableArrayContainsObject(CLMutableArrayType *a, void *o)
 
 CLMutableArrayType *CLMutableArrayCopy(CLMutableArrayType *a)
 {
-    int count = CLMutableArrayTypeCount(a) - 1;
+    size_t count = CLMutableArrayTypeCount(a) - 1;
     int i = 0;
     CLMutableArrayType *arr = calloc(1, sizeof(CLMutableArrayType));
     arr->objs = calloc(count + 1, 100);

@@ -11,6 +11,7 @@
 
 struct CLMutableArrayType
 {
+    size_t count;
     void **objs;
 };
 

@@ -20,7 +20,7 @@ typedef struct CLMutableArrayType CLMutableArrayType;
 CLMutableArrayType *CLMutableArrayTypeCreateWithObjects(void *, ...);
 CLMutableArrayType *CLMutableArrayTypeCreateWithList(void *, va_list, int);
 CLArrayType *CLMutableArrayImmutableCopy(CLMutableArrayType *);
-int CLMutableArrayTypeCount(CLMutableArrayType *);
+size_t CLMutableArrayTypeCount(CLMutableArrayType *);
 void *CLMutableArrayObjectAtIndex(CLMutableArrayType *, int);
 void CLMutableArrayTypeAddObject(CLMutableArrayType *, void *);
 bool CLMutableArrayContainsObject(CLMutableArrayType *, void *);

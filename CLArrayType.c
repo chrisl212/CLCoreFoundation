@@ -12,11 +12,13 @@
 
 struct CLArrayType
 {
+    size_t count;
     void **objs;
 };
 
 struct CLMutableArrayType
 {
+    size_t count;
     void **objs;
 };
 
@@ -42,7 +44,7 @@ CLArrayType *CLArrayTypeCreateWithObjects(void *o, ...)
         retval->objs[i] = va_arg(list, void *);
     }
     va_end(list);
-    
+    retval->count = count;
     return retval;
 }
 
@@ -59,14 +61,15 @@ CLArrayType *CLArrayTypeCreateWithList(void *o, va_list list, int count)
     {
         retval->objs[i] = (void *)va_arg(list, void *);
     }
-    
+    retval->count = count;
+
     return retval;
 }
 
 void *CLArrayTypeMutableCopy(CLArrayType *a)
 {
     CLMutableArrayType *arr = calloc(1, sizeof(CLMutableArrayType));
-    int count = CLArrayTypeCount(a) - 1;
+    size_t count = CLArrayTypeCount(a) - 1;
     arr->objs = calloc(count + 1, 100);
     int i = 0;
     for (; i < count; i++)
@@ -76,18 +79,14 @@ void *CLArrayTypeMutableCopy(CLArrayType *a)
     return arr;
 }
 
-int CLArrayTypeCount(CLArrayType *arr)
+size_t CLArrayTypeCount(CLArrayType *a)
 {
-    if (!arr->objs)
-        return 0;
-    int c = 0;
-    for (; arr->objs[c] != NULL; c++);
-    return c;
+    return a->count;
 }
 
 void *CLArrayObjectAtIndex(CLArrayType *arr, int ind)
 {
-    int max = CLArrayTypeCount(arr) - 1;
+    size_t max = CLArrayTypeCount(arr) - 1;
     if (ind > max)
         fputs("Index out of bounds", stderr);
     void *o = arr->objs[ind];
@@ -100,7 +99,7 @@ void *CLArrayObjectAtIndex(CLArrayType *arr, int ind)
 bool CLArrayContainsObject(CLArrayType *arr, void *o)
 {
     int i = 0;
-    int count = CLArrayTypeCount(arr) - 1;
+    size_t count = CLArrayTypeCount(arr) - 1;
     for (; i < count; i++)
     {
         if (CLArrayObjectAtIndex(arr, i) == o)
@@ -111,7 +110,7 @@ bool CLArrayContainsObject(CLArrayType *arr, void *o)
 
 CLArrayType *CLArrayCopy(CLArrayType *a)
 {
-    int count = CLArrayTypeCount(a) - 1;
+    size_t count = CLArrayTypeCount(a) - 1;
     int i = 0;
     CLArrayType *arr = calloc(1, sizeof(CLArrayType));
     arr->objs = calloc(count + 1, 100);

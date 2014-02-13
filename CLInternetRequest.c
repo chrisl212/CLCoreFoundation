@@ -55,7 +55,7 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
     CLMutableArrayType *comps = CLStringComponentsSeparatedByString(url->path, CLStringTypeCreateWithCString("/"));
     CLStringType *baseServer = CLMutableArrayObjectAtIndex(comps, 0);
     
-    int count = CLMutableArrayTypeCount(comps);
+    size_t count = CLMutableArrayTypeCount(comps);
     CLStringType *restOfURL = CLStringTypeCreate();
     int i = 1;
     for (; i < count; i++)
@@ -111,7 +111,7 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
     
     CLMutableArrayType *headers = CLStringComponentsSeparatedByString(headerstr, CLStringTypeCreateWithCString("\n"));
     
-    int header_count = CLMutableArrayTypeCount(headers);
+    size_t header_count = CLMutableArrayTypeCount(headers);
     long long contentlength = 0;
     CLStringType *chk = CLStringTypeCreateWithCString("Content-Length");
     int in = 0;
