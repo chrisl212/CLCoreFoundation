@@ -9,6 +9,11 @@
 #include "CLStringType.h"
 #include <math.h>
 
+struct CLMutableArrayType
+{
+    void **objs;
+};
+
 struct CLStringType
 {
     char *str;
@@ -104,12 +109,27 @@ CLStringType *CLStringByRemovingWhiteSpace(CLStringType *str)
 
 CLStringType *CLStringByReplacingFirstStringWithString(CLStringType *str, CLStringType *s1, CLStringType *s2)
 {
-    char *p = strdup(str->str);
-    char *s;
-    if ((s = strstr(p, s1->str)))
-        strncpy(s, s2->str, strlen(s2->str));
+    char *orig, *rep, *with;
+    orig = str->str;
+    rep = s1->str;
+    with = s2->str;
+    char *result;
+    char *ins;
+    char *tmp;
+    size_t len_rep, len_with, len_front;
+
     
-    return CLStringTypeCreateWithCString(p);
+    if (!(ins = strstr(orig, rep)))
+        return NULL;
+    
+    len_rep = strlen(rep);
+    len_with = strlen(with);
+    len_front = ins - orig;
+    result = malloc(strlen(orig) + len_with - len_rep + 1);
+    tmp = strncpy(result, orig, len_front) + len_front;
+    tmp = strcpy(tmp, with) + len_with;
+    strcpy(tmp, ins + len_rep);
+    return CLStringTypeCreateWithCString(result);
 }
 
 CLStringType *CLStringByReplacingStringsWithString(CLStringType *str, CLStringType *s1, CLStringType *s2)
@@ -194,6 +214,25 @@ bool CLStringContainsString(CLStringType *s1, CLStringType *s2)
 char *CLStringCString(CLStringType *str)
 {
     return strdup(str->str);
+}
+
+char **CLStringOccurencesOfString(CLStringType *str, CLStringType *occ)
+{
+    CLMutableArrayType *final = CLMutableArrayTypeCreateWithObjects(NULL);
+    char *string = str->str;
+    char *sub = occ->str;
+    size_t len = strlen(occ->str);
+    char *c, *f;
+    c = strstr(string, sub);
+    f = "";
+    while (c && strcmp(c, f) != 0)
+    {
+        f = strdup(c);
+        CLMutableArrayTypeAddObject(final, c);
+        string += len;
+        c = strstr(string, sub);
+    }
+    return (char **)final->objs;
 }
 
 int CLStringLength(CLStringType *str)
