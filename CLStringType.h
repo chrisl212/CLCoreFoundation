@@ -35,6 +35,8 @@ CLStringType *CLStringByReplacingFirstStringWithString(CLStringType *, CLStringT
 CLStringType *CLStringByReplacingStringsWithString(CLStringType *, CLStringType *, CLStringType *);
 CLStringType *CLStringWithFormat(CLStringType *, ...);
 CLStringType *CLStringWithListFormat(CLStringType *, va_list);
+CLStringType *CLStringUppercaseString(CLStringType *);
+CLStringType *CLStringLowercaseString(CLStringType *);
 CLMutableArrayType *CLStringComponentsSeparatedByString(CLStringType *, CLStringType *);
 bool CLStringCompare(CLStringType *, CLStringType *);
 bool CLStringContainsString(CLStringType *, CLStringType *);

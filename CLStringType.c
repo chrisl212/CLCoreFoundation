@@ -8,6 +8,7 @@
 
 #include "CLStringType.h"
 #include <math.h>
+#include <ctype.h>
 
 struct CLMutableArrayType
 {
@@ -182,6 +183,32 @@ CLStringType *CLStringWithListFormat(CLStringType *fmt, va_list lst)
     str->encoding = CLStringTypeEncodingUTF8;
     str->str = malloc(pow(strlen(fmt->str), 2));
     vsprintf(str->str, fmt->str, lst);
+    return str;
+}
+
+CLStringType *CLStringUppercaseString(CLStringType *s)
+{
+    CLStringType *str = CLStringTypeCreate();
+    str->str = strdup(s->str);
+    size_t len = CLStringLength(str);
+    int i = 0;
+    for (; i < len; i++)
+    {
+        str->str[i] = toupper(str->str[i]);
+    }
+    return str;
+}
+
+CLStringType *CLStringLowercaseString(CLStringType *s)
+{
+    CLStringType *str = CLStringTypeCreate();
+    str->str = strdup(s->str);
+    size_t len = CLStringLength(str);
+    int i = 0;
+    for (; i < len; i++)
+    {
+        str->str[i] = tolower(str->str[i]);
+    }
     return str;
 }
 
