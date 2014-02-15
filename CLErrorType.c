@@ -10,11 +10,11 @@
 
 struct CLErrorType
 {
-    int domain;
+    CLStringType *domain;
     CLStringType *description;
 };
 
-CLErrorType *CLErrorWithDomainAndDescription(int d, CLStringType *s)
+CLErrorType *CLErrorWithDomainAndDescription(CLStringType *d, CLStringType *s)
 {
     CLErrorType *err = calloc(1, sizeof(CLErrorType));
     err->description = s;

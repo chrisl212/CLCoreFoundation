@@ -14,7 +14,7 @@
 
 typedef struct CLErrorType CLErrorType;
 
-CLErrorType *CLErrorWithDomainAndDescription(int, CLStringType *);
+CLErrorType *CLErrorWithDomainAndDescription(CLStringType *, CLStringType *);
 void CLErrorRelease(CLErrorType *);
 
 #endif
