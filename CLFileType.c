@@ -33,13 +33,21 @@ CLFileType *CLFileWithPath(CLStringType *path, CLErrorType **e)
         file->isDir = true;
         struct dirent *ent;
         CLMutableArrayType *tempArray = CLMutableArrayTypeCreateWithObjects(NULL);
+        CLMutableArrayType *hiddenTemp = CLMutableArrayTypeCreateWithObjects(NULL);
         while ((ent = readdir(d)) != NULL)
         {
             if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0)
                 continue;
+            bool isHidden = false;
+            if (ent->d_name[0] == '.')
+                isHidden = true;
             CLStringType *newPath = CLStringByAppendingString(path, CLStringTypeCreateWithCString(ent->d_name));
-            CLMutableArrayTypeAddObject(tempArray, newPath);
+            if (!isHidden)
+                CLMutableArrayTypeAddObject(tempArray, newPath);
+            else
+                CLMutableArrayTypeAddObject(hiddenTemp, newPath);
         }
+        file->hiddenFiles = CLMutableArrayImmutableCopy(hiddenTemp);
         file->directoryContents = CLMutableArrayImmutableCopy(tempArray);
         closedir(d);
     }

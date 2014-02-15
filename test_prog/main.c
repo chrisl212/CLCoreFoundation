@@ -60,7 +60,7 @@ int main(int argc, const char * argv[])
     //puts(CLStringCString(string));
     
     CLErrorType *err = NULL;
-    CLFileType *dir = CLFileWithPath(CLStringTypeCreateWithCString("/Users/macuser/Desktop"), &err);
+    CLFileType *dir = CLFileWithPath(CLStringTypeCreateWithCString("/Users/macuser"), &err);
     if (err)
         CLErrorPrint(err);
     else

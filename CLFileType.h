@@ -23,6 +23,7 @@ typedef struct
     struct CLStringType *pathExtension;
     bool isDir;
     struct CLArrayType *directoryContents;
+    struct CLArrayType *hiddenFiles;
 } CLFileType;
 
 CLFileType *CLFileWithPath(struct CLStringType *, CLErrorType **);
