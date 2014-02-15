@@ -113,7 +113,7 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
     
     size_t header_count = CLMutableArrayTypeCount(headers);
     long long contentlength = 0;
-    CLStringType *chk = CLStringTypeCreateWithCString("Content-Length");
+    //CLStringType *chk = CLStringTypeCreateWithCString("Content-Length");
     int in = 0;
     for (; in < header_count; in++)
     {
