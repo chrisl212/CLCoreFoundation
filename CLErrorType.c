@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 A and C Studios. All rights reserved.
 //
 
-#include "CLErrorType.h"
+#include "CLStringType.h"
 
 struct CLErrorType
 {

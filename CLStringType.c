@@ -10,6 +10,8 @@
 #include <math.h>
 #include <ctype.h>
 
+char *CLCoreFoundationFileErrorDomain = "File Error";
+
 struct CLMutableArrayType
 {
     size_t count;
@@ -38,18 +40,36 @@ CLStringType *CLStringTypeCreateWithCString(const char *string)
     return str;
 }
 
-CLStringType *CLStringTypeCreateWithContentsOfPath(const char *path)
+CLStringType *CLStringTypeCreateWithContentsOfPath(const char *path, CLErrorType **e)
 {
     FILE *f = fopen(path, "r");
-    CLStringType *str = CLStringTypeCreateWithContentsOfFile(f);
+    CLStringType *str = CLStringTypeCreateWithContentsOfFile(f, e);
     fclose(f);
     return str;
 }
 
-CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *f)
+CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *f, CLErrorType **e)
 {
     CLStringType *str = calloc(1, sizeof(CLStringType));
     str->encoding = CLStringTypeEncodingUTF8;
+    
+    if (!f)
+    {
+        char *err = "File does not exist";
+        extern char *CLCoreFoundationFileErrorDomain;
+        *e = CLErrorWithDomainAndDescription(CLStringTypeCreateWithCString(CLCoreFoundationFileErrorDomain), CLStringTypeCreateWithCString(err));
+        free(str);
+        return NULL;
+    }
+    if (ferror(f) != 0)
+    {
+        char *err = strerror(ferror(f));
+        extern char *CLCoreFoundationFileErrorDomain;
+        *e = CLErrorWithDomainAndDescription(CLStringTypeCreateWithCString(CLCoreFoundationFileErrorDomain), CLStringTypeCreateWithCString(err));
+        free(str);
+        return NULL;
+    }
+    
     fseek(f, 0L, SEEK_END);
     long long fsize = ftell(f);
     fseek(f, 0L, SEEK_SET);

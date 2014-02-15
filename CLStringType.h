@@ -11,6 +11,7 @@
 #include <memory.h>
 #include <string.h>
 #include <stdbool.h>
+#include "CLErrorType.h"
 #include "CLMutableArrayType.h"
 
 #ifndef CLStringType_h
@@ -26,8 +27,8 @@ typedef enum
 
 CLStringType *CLStringTypeCreate();
 CLStringType *CLStringTypeCreateWithCString(const char *);
-CLStringType *CLStringTypeCreateWithContentsOfPath(const char *);
-CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *);
+CLStringType *CLStringTypeCreateWithContentsOfPath(const char *, CLErrorType **);
+CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *, CLErrorType **);
 CLStringType *CLStringCopy(CLStringType *);
 CLStringType *CLStringByAppendingString(CLStringType *, CLStringType *);
 CLStringType *CLStringByRemovingWhiteSpace(CLStringType *);

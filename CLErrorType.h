@@ -6,15 +6,13 @@
 //  Copyright (c) 2014 A and C Studios. All rights reserved.
 //
 
-#include <stdio.h>
-#include "CLStringType.h"
-
 #ifndef CLCoreFoundation_CLErrorType_h
 #define CLCoreFoundation_CLErrorType_h
 
 typedef struct CLErrorType CLErrorType;
+struct CLStringType;
 
-CLErrorType *CLErrorWithDomainAndDescription(CLStringType *, CLStringType *);
+CLErrorType *CLErrorWithDomainAndDescription(struct CLStringType *, struct CLStringType *);
 void CLErrorRelease(CLErrorType *);
 
 #endif
