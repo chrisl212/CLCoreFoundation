@@ -15,7 +15,7 @@ int main(int argc, const char * argv[])
     CLStringType *str = CLStringTypeCreateWithCString("Hello, World!");
     puts(CLStringCString(str));
     CLMutableArrayType *comps = CLStringComponentsSeparatedByString(str, CLStringTypeCreateWithCString(","));
-    int cnt = CLMutableArrayTypeCount(comps);
+    int cnt = (int)CLMutableArrayTypeCount(comps);
     int i = 0;
     for (; i < cnt; i++)
     {
@@ -24,8 +24,8 @@ int main(int argc, const char * argv[])
     
     puts("-----------------\nArray Tests");
     CLArrayType *arr = CLArrayTypeCreateWithObjects(str, NULL);
-    int c = CLArrayTypeCount(arr);
-    int i = 0;
+    int c = (int)CLArrayTypeCount(arr);
+    i = 0;
     for (; i < c; i++)
     {
         void *b = CLArrayObjectAtIndex(arr, i);
@@ -35,8 +35,8 @@ int main(int argc, const char * argv[])
     puts("-----------------\nMutable Array Tests");
     CLMutableArrayType *mutablearr = CLMutableArrayTypeCreateWithObjects(str, NULL);
     CLMutableArrayTypeAddObject(mutablearr, CLStringTypeCreateWithCString("schnitzel"));
-    int co = CLMutableArrayTypeCount(mutablearr);
-    int i = 0;
+    int co = (int)CLMutableArrayTypeCount(mutablearr);
+    i = 0;
     for (; i < co; i++)
     {
         void *b = CLMutableArrayObjectAtIndex(mutablearr, i);
@@ -55,8 +55,23 @@ int main(int argc, const char * argv[])
     puts(CLDictionaryTypeObjectForKey(dict, key3));
     
     puts("-----------------\nInternet Tests");
-    CLURLType *url = CLURLTypeCreateWithPath(CLStringTypeCreateWithCString("www.a-cstudios.com/text.json"), CLURLTypeHTTP);
-    CLStringType *string = CLInternetRequestContentsOfURL(url);
-    puts(CLStringCString(string));
+    //CLURLType *url = CLURLTypeCreateWithPath(CLStringTypeCreateWithCString("www.a-cstudios.com/text.json"), CLURLTypeHTTP);
+    //CLStringType *string = CLInternetRequestContentsOfURL(url);
+    //puts(CLStringCString(string));
+    
+    CLErrorType *err = NULL;
+    CLFileType *dir = CLFileWithPath(CLStringTypeCreateWithCString("/Users/macuser/Desktop"), &err);
+    if (err)
+        CLErrorPrint(err);
+    else
+    {
+        i = 0;
+        int dircount = (int)CLArrayTypeCount(dir->directoryContents);
+        for (; i < dircount; i++)
+        {
+            puts(CLStringCString(CLArrayObjectAtIndex(dir->directoryContents, i)));
+        }
+    }
+    
     return 0;
 }

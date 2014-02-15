@@ -9,10 +9,17 @@
 #ifndef CLCoreFoundation_CLErrorType_h
 #define CLCoreFoundation_CLErrorType_h
 
-typedef struct CLErrorType CLErrorType;
 struct CLStringType;
 
+typedef struct
+{
+    struct CLStringType *domain;
+    struct CLStringType *description;
+} CLErrorType;
+
 CLErrorType *CLErrorWithDomainAndDescription(struct CLStringType *, struct CLStringType *);
+struct CLStringType *CLErrorString(CLErrorType *);
 void CLErrorRelease(CLErrorType *);
+void CLErrorPrint(CLErrorType *);
 
 #endif

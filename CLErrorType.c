@@ -8,12 +8,6 @@
 
 #include "CLStringType.h"
 
-struct CLErrorType
-{
-    CLStringType *domain;
-    CLStringType *description;
-};
-
 CLErrorType *CLErrorWithDomainAndDescription(CLStringType *d, CLStringType *s)
 {
     CLErrorType *err = calloc(1, sizeof(CLErrorType));
@@ -22,7 +16,19 @@ CLErrorType *CLErrorWithDomainAndDescription(CLStringType *d, CLStringType *s)
     return err;
 }
 
+struct CLStringType *CLErrorString(CLErrorType *err)
+{
+    CLStringType *fmt = CLStringTypeCreateWithCString("Error: %s - %s\n");
+    CLStringType *errorString = CLStringWithFormat(fmt, err->domain, err->description);
+    return errorString;
+}
+
 void CLErrorRelease(CLErrorType *err)
 {
     free(err);
+}
+
+void CLErrorPrint(CLErrorType *err)
+{
+    printf("Error: %s - %s\n", CLStringCString(err->domain), CLStringCString(err->description));
 }

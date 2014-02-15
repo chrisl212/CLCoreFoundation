@@ -56,7 +56,6 @@ CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *f, CLErrorType **e)
     if (!f)
     {
         char *err = "File does not exist";
-        extern char *CLCoreFoundationFileErrorDomain;
         *e = CLErrorWithDomainAndDescription(CLStringTypeCreateWithCString(CLCoreFoundationFileErrorDomain), CLStringTypeCreateWithCString(err));
         free(str);
         return NULL;
@@ -64,7 +63,6 @@ CLStringType *CLStringTypeCreateWithContentsOfFile(FILE *f, CLErrorType **e)
     if (ferror(f) != 0)
     {
         char *err = strerror(ferror(f));
-        extern char *CLCoreFoundationFileErrorDomain;
         *e = CLErrorWithDomainAndDescription(CLStringTypeCreateWithCString(CLCoreFoundationFileErrorDomain), CLStringTypeCreateWithCString(err));
         free(str);
         return NULL;
@@ -230,6 +228,28 @@ CLStringType *CLStringLowercaseString(CLStringType *s)
         str->str[i] = tolower(str->str[i]);
     }
     return str;
+}
+
+CLStringType *CLStringLastPathComponent(CLStringType *s)
+{
+    CLMutableArrayType *comps = CLStringComponentsSeparatedByString(s, CLStringTypeCreateWithCString("/"));
+    int count = (int)CLMutableArrayTypeCount(comps);
+    if (count == 0)
+        return CLStringTypeCreate();
+    return CLMutableArrayObjectAtIndex(comps, count - 1);
+}
+
+CLStringType *CLStringPathExtension(CLStringType *s)
+{
+    if (!s || CLStringLength(s) == 0)
+        return NULL;
+    
+    CLStringType *file = CLStringLastPathComponent(s);
+    CLMutableArrayType *comps = CLStringComponentsSeparatedByString(file, CLStringTypeCreateWithCString("."));
+    int count = (int)CLMutableArrayTypeCount(comps);
+    if (count == 0)
+        return NULL;
+    return CLMutableArrayObjectAtIndex(comps, count - 1);
 }
 
 bool _clstrcmp(const char *s1, const char *s2)

@@ -13,5 +13,6 @@
 #include "CLMutableArrayType.h"
 #include "CLInternetRequest.h"
 #include "CLErrorType.h"
+#include "CLFileType.h"
 
 extern char *const CLCoreFoundationFileErrorDomain;

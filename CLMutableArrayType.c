@@ -69,6 +69,7 @@ CLArrayType *CLMutableArrayImmutableCopy(CLMutableArrayType *arr)
     CLArrayType *array = CLArrayTypeCreateWithObjects(NULL);
     size_t count = CLMutableArrayTypeCount(arr);
     array->objs = malloc(100 * count);
+    array->count = arr->count;
     int i = 0;
     for (; i < count; i++)
     {
