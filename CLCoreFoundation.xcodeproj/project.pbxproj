@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		633EFDF218AEFA2B002FB5F8 /* CLErrorType.c in Sources */ = {isa = PBXBuildFile; fileRef = 633EFDF118AEFA2B002FB5F8 /* CLErrorType.c */; };
+		633EFDFE18AF1FCF002FB5F8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 633EFDFD18AF1FCF002FB5F8 /* Makefile */; };
 		63BBCEF018A6D8420019D1A1 /* CLStringType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCEEF18A6D8420019D1A1 /* CLStringType.c */; };
 		63BBCEF318A6DC1D0019D1A1 /* CLArrayType.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCEF218A6DC1D0019D1A1 /* CLArrayType.c */; };
 		63BBCF0518A6E0170019D1A1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 63BBCF0418A6E0170019D1A1 /* main.c */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		633EFDF018AEF9BE002FB5F8 /* CLErrorType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLErrorType.h; sourceTree = "<group>"; };
 		633EFDF118AEFA2B002FB5F8 /* CLErrorType.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CLErrorType.c; sourceTree = "<group>"; };
+		633EFDFD18AF1FCF002FB5F8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		63BBCEE618A6D6D50019D1A1 /* libclcore.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libclcore.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		63BBCEED18A6D7BC0019D1A1 /* CLCoreFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLCoreFoundation.h; sourceTree = "<group>"; };
 		63BBCEEE18A6D8390019D1A1 /* CLStringType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLStringType.h; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				63BBCF1C18A705060019D1A1 /* CLInternetRequest.c */,
 				633EFDF018AEF9BE002FB5F8 /* CLErrorType.h */,
 				633EFDF118AEFA2B002FB5F8 /* CLErrorType.c */,
+				633EFDFD18AF1FCF002FB5F8 /* Makefile */,
 				63BBCF0318A6E0170019D1A1 /* test_prog */,
 				63BBCEE718A6D6D50019D1A1 /* Products */,
 			);
@@ -199,6 +202,7 @@
 				63BBCEF318A6DC1D0019D1A1 /* CLArrayType.c in Sources */,
 				63BBCEF018A6D8420019D1A1 /* CLStringType.c in Sources */,
 				63BBCF1D18A705060019D1A1 /* CLInternetRequest.c in Sources */,
+				633EFDFE18AF1FCF002FB5F8 /* Makefile in Sources */,
 				633EFDF218AEFA2B002FB5F8 /* CLErrorType.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
