@@ -55,10 +55,11 @@ int main(int argc, const char * argv[])
     puts(CLDictionaryTypeObjectForKey(dict, key3));
     
     puts("-----------------\nInternet Tests");
-    //CLURLType *url = CLURLTypeCreateWithPath(CLStringTypeCreateWithCString("www.a-cstudios.com/text.json"), CLURLTypeHTTP);
-    //CLStringType *string = CLInternetRequestContentsOfURL(url);
-    //puts(CLStringCString(string));
+    CLURLType *url = CLURLTypeCreateWithPath(CLStringTypeCreateWithCString("www.a-cstudios.com/welcome.html"), CLURLTypeHTTP);
+    CLStringType *string = CLInternetRequestContentsOfURL(url);
+    puts(CLStringCString(string));
     
+    /*
     CLErrorType *err = NULL;
     CLFileType *dir = CLFileWithPath(CLStringTypeCreateWithCString("/Users/macuser"), &err);
     if (err)
@@ -72,6 +73,6 @@ int main(int argc, const char * argv[])
             puts(CLStringCString(CLArrayObjectAtIndex(dir->directoryContents, i)));
         }
     }
-    
+    */
     return 0;
 }

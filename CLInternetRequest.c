@@ -93,58 +93,29 @@ CLStringType *CLInternetRequestContentsOfURL(CLURLType *url)
     
 	inet_ntop(p->ai_family, get_in_addr((struct sockaddr *)p->ai_addr),
               s, sizeof s);
-	printf("client: connecting to %s\n", s);
     
 	freeaddrinfo(servinfo); // all done with this structure
     
     char request[300];
     sprintf(request, "GET /%s HTTP/1.1\r\nHost:%s\r\n\r\n", CLStringCString(restOfURL), CLStringCString(baseServer));
     send(sockfd, request, strlen(request), 0);
+    
+    FILE *temp = tmpfile();
+    
     char *buf = malloc(400);
-    if ((numbytes = (int)recv(sockfd, buf, 400 - 1, 0)) == -1) {
-	    perror("recv");
-	    exit(1);
-	}
-    buf[numbytes] = '\0';
-    CLStringType *headerstr = CLStringTypeCreateWithCString(buf);
-    //free(buf);
-    
-    CLMutableArrayType *headers = CLStringComponentsSeparatedByString(headerstr, CLStringTypeCreateWithCString("\n"));
-    
-    size_t header_count = CLMutableArrayTypeCount(headers);
-    long long contentlength = 0;
-    //CLStringType *chk = CLStringTypeCreateWithCString("Content-Length");
-    int in = 0;
-    for (; in < header_count; in++)
+    while ((numbytes = (int)recv(sockfd, buf, 400, 0)) > 0)
     {
-
+        fwrite(buf, 1, numbytes, temp);
     }
-    free(buf);
-    if (contentlength > 0)
-    {
-        buf = malloc(contentlength);
-        if ((numbytes = (int)recv(sockfd, buf, contentlength - 1, 0)) == -1) {
-            perror("recv");
-            exit(1);
-        }
-        
-        buf[numbytes] = '\0';
-    }
-    else
-    {
-        buf = malloc(2000);
-        if ((numbytes = (int)recv(sockfd, buf, 2000 - 1, 0)) == -1) {
-            perror("recv");
-            exit(1);
-        }
-        
-        buf[numbytes] = '\0';
-    }
-
     
-	printf("client: received '%s'\n", buf);
+    fseek(temp, 0L, SEEK_END);
+    long size = ftell(temp);
+    fseek(temp, 0L, SEEK_SET);
+    char *newBuf = malloc(size);
+    fread(newBuf, 1, size, temp);
+    fclose(temp);
     
-	close(sockfd);
-    retval = CLStringTypeCreateWithCString(buf);
+    close(sockfd);
+    retval = CLStringTypeCreateWithCString(newBuf);
     return retval;
 }

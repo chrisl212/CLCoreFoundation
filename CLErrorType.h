@@ -11,11 +11,12 @@
 
 struct CLStringType;
 
-typedef struct
+typedef struct CLErrorType CLErrorType;
+struct CLErrorType
 {
     struct CLStringType *domain;
     struct CLStringType *description;
-} CLErrorType;
+};
 
 CLErrorType *CLErrorWithDomainAndDescription(struct CLStringType *, struct CLStringType *);
 struct CLStringType *CLErrorString(CLErrorType *);
