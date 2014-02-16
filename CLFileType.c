@@ -53,7 +53,7 @@ CLFileType *CLFileWithPath(CLStringType *path, CLErrorType **e)
     }
     else
     {
-        FILE *f = fopen(CLStringCString(path), "r");
+        FILE *f = fopen(CLStringCString(path), "rb");
         extern char *CLCoreFoundationFileErrorDomain;
         if (!f)
         {
@@ -65,11 +65,23 @@ CLFileType *CLFileWithPath(CLStringType *path, CLErrorType **e)
             *e = CLErrorWithDomainAndDescription(CLStringTypeCreateWithCString(CLCoreFoundationFileErrorDomain), CLStringTypeCreateWithCString(strerror(ferror(f))));
             return NULL;
         }
+        fseek(f, 0L, SEEK_END);
+        long sz = ftell(f);
+        fseek(f, 0L, SEEK_SET);
         fclose(f);
         
         file->isDir = false;
         file->pathExtension = CLStringPathExtension(path);
         file->directoryContents = NULL;
+        file->fileSize.byteSize = sz;
+        if ((sz/1024.0) >= 1)
+            file->fileSize.sizeType = file_size_type_kb;
+        else
+            file->fileSize.sizeType = file_size_type_bytes;
+        if ((sz/1024.0/1024.0) >= 1)
+            file->fileSize.sizeType = file_size_type_mb;
+        if ((sz/1024.0/1024.0/1024.0) >= 1)
+            file->fileSize.sizeType = file_size_type_gb;
     }
     return file;
 }

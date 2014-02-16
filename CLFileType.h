@@ -16,6 +16,20 @@
 struct CLStringType;
 struct CLArrayType;
 
+typedef enum
+{
+    file_size_type_bytes,
+    file_size_type_kb,
+    file_size_type_mb,
+    file_size_type_gb
+} file_size_type_t;
+
+typedef struct
+{
+    long long byteSize;
+    file_size_type_t sizeType;
+} file_size_t;
+
 typedef struct
 {
     struct CLStringType *fileName;
@@ -24,6 +38,7 @@ typedef struct
     bool isDir;
     struct CLArrayType *directoryContents;
     struct CLArrayType *hiddenFiles;
+    file_size_t fileSize;
 } CLFileType;
 
 CLFileType *CLFileWithPath(struct CLStringType *, CLErrorType **);
