@@ -16,6 +16,8 @@ struct CLStringType;
 typedef struct CLDataType CLDataType;
 
 CLDataType *CLDataWithContentsOfFile(struct CLStringType *, struct CLErrorType **);
+CLDataType *CLDataWithBytes(void *);
+void CLDataAppendData(CLDataType *, CLDataType *);
 void *CLDataBytes(CLDataType *);
 size_t CLDataLength(CLDataType *);
 struct CLStringType *CLDataStringRepresentation(CLDataType *);

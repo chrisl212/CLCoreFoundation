@@ -43,6 +43,29 @@ struct CLDataType *CLDataWithContentsOfFile(CLStringType *s, CLErrorType **e)
     return data;
 }
 
+struct CLDataType *CLDataWithBytes(void *b)
+{
+    struct CLDataType *data = calloc(1, sizeof(struct CLDataType));
+    if (!b)
+    {
+        data->length = 0;
+        data->bytes = "";
+        return data;
+    }
+    data->bytes = strdup(b);
+    data->length = sizeof(b);
+    return data;
+}
+
+void CLDataAppendData(struct CLDataType *d, struct CLDataType *d2)
+{
+    char *newData = malloc(d->length + d2->length + 1);
+    strcpy(newData, d->bytes);
+    strcat(newData, d2->bytes);
+    newData[d->length + d2->length + 1] = '\0';
+    d->bytes = newData;
+}
+
 void *CLDataBytes(struct CLDataType *d)
 {
     return d->bytes;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		633B8F2018B1179B00C18B68 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 633B8F1F18B1179B00C18B68 /* libpthread.dylib */; };
 		633EFDF218AEFA2B002FB5F8 /* CLErrorType.c in Sources */ = {isa = PBXBuildFile; fileRef = 633EFDF118AEFA2B002FB5F8 /* CLErrorType.c */; };
 		633EFDFE18AF1FCF002FB5F8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 633EFDFD18AF1FCF002FB5F8 /* Makefile */; };
 		633EFE0118AFDA25002FB5F8 /* CLFileType.c in Sources */ = {isa = PBXBuildFile; fileRef = 633EFE0018AFDA25002FB5F8 /* CLFileType.c */; };
@@ -42,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		633B8F1F18B1179B00C18B68 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		633EFDF018AEF9BE002FB5F8 /* CLErrorType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLErrorType.h; sourceTree = "<group>"; };
 		633EFDF118AEFA2B002FB5F8 /* CLErrorType.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CLErrorType.c; sourceTree = "<group>"; };
 		633EFDFD18AF1FCF002FB5F8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633B8F2018B1179B00C18B68 /* libpthread.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +91,7 @@
 		63BBCEDD18A6D6D50019D1A1 = {
 			isa = PBXGroup;
 			children = (
+				633B8F1F18B1179B00C18B68 /* libpthread.dylib */,
 				63BBCEED18A6D7BC0019D1A1 /* CLCoreFoundation.h */,
 				634BF5BC18B02D19000CD057 /* CLDataType.h */,
 				634BF5BD18B02D25000CD057 /* CLDataType.c */,
