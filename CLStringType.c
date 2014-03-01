@@ -95,18 +95,61 @@ CLStringType *CLStringByAppendingString(CLStringType *s1, CLStringType *s2)
     return str;
 }
 
+char** str_split(char* a_str, const char a_delim)
+{
+    char** result    = 0;
+    size_t count     = 0;
+    char* tmp        = a_str;
+    char* last_comma = 0;
+    char delim[2];
+    delim[0] = a_delim;
+    delim[1] = 0;
+    
+    /* Count how many elements will be extracted. */
+    while (*tmp)
+    {
+        if (a_delim == *tmp)
+        {
+            count++;
+            last_comma = tmp;
+        }
+        tmp++;
+    }
+    
+    /* Add space for trailing token. */
+    count += last_comma < (a_str + strlen(a_str) - 1);
+    
+    /* Add space for terminating null string so caller
+     knows where the list of returned strings ends. */
+    count++;
+    
+    result = malloc(sizeof(char*) * count);
+    
+    if (result)
+    {
+        size_t idx  = 0;
+        char* token = strtok(a_str, delim);
+        
+        while (token)
+        {
+            *(result + idx++) = strdup(token);
+            token = strtok(0, delim);
+        }
+        *(result + idx) = 0;
+    }
+    
+    return result;
+}
+
 CLMutableArrayType *CLStringComponentsSeparatedByString(CLStringType *str, CLStringType *delimit)
 {
     CLMutableArrayType *retval = CLMutableArrayTypeCreateWithObjects(NULL);
     
-    char *s = CLStringCString(str);
-    char *sv;
-    char *s1 = strtok_r(s, delimit->str, &sv);
-    while (s1 != NULL)
+    char **occs = str_split(str->str, *delimit->str);
+    int i = 0;
+    for (; occs[i]; i++)
     {
-        CLStringType *newstr = CLStringTypeCreateWithCString(s1);
-        CLMutableArrayTypeAddObject(retval, newstr);
-        s1 = strtok_r(NULL, delimit->str, &sv);
+        CLMutableArrayTypeAddObject(retval, CLStringTypeCreateWithCString(occs[i]));
     }
     
     return retval;
