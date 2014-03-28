@@ -69,12 +69,14 @@ CLArrayType *CLArrayTypeCreateWithList(void *o, va_list list, int count)
 void *CLArrayTypeMutableCopy(CLArrayType *a)
 {
     CLMutableArrayType *arr = calloc(1, sizeof(CLMutableArrayType));
-    size_t count = CLArrayTypeCount(a) - 1;
-    arr->objs = calloc(count + 1, 100);
+    size_t count = CLArrayTypeCount(a);
+    arr->objs = calloc(count, 100);
     int i = 0;
     for (; i < count; i++)
     {
-        memcpy(arr->objs[i], a->objs[i], sizeof(a->objs[i]));
+        arr->count++;
+        arr->objs[i] = a->objs[i];
+        //memcpy(arr->objs[i], a->objs[i], strlen(a->objs[i]));
     }
     return arr;
 }
@@ -93,7 +95,8 @@ void *CLArrayObjectAtIndex(CLArrayType *arr, int ind)
     if (o)
         return o;
     else
-        fputs("Attempt to access NULL object", stderr), abort();
+        fputs("Attempt to access NULL object", stderr);
+    return o;
 }
 
 bool CLArrayContainsObject(CLArrayType *arr, void *o)

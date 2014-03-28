@@ -92,10 +92,11 @@ void *CLMutableArrayObjectAtIndex(CLMutableArrayType *arr, int ind)
     if (o)
         return o;
     else
-        fputs("Attempt to access NULL object", stderr), abort();
+        fputs("Attempt to access NULL object", stderr);
+    return o;
 }
 
-void CLMutableArrayTypeAddObject(CLMutableArrayType *arr, void *o)
+void CLMutableArrayTypeInsertObjectAtIndex(CLMutableArrayType *arr, void *o, int ind)
 {
     if (!o)
     {
@@ -107,11 +108,42 @@ void CLMutableArrayTypeAddObject(CLMutableArrayType *arr, void *o)
     int i;
     for (i = 0; i < count; i++)
     {
+        if (i == ind)
+        {
+            newobjs[i] = o;
+            continue;
+        }
         newobjs[i] = arr->objs[i];
     }
-    newobjs[i] = o;
     arr->objs = newobjs;
     arr->count++;
+}
+
+void CLMutableArrayTypeRemoveObjectAtIndex(CLMutableArrayType *arr, int ind)
+{
+    size_t count = CLMutableArrayTypeCount(arr);
+    if (ind >= count)
+    {
+        fputs("Index out of bounds", stderr);
+    }
+    void **newobjs = malloc(100 * (count - 1));
+    int i, newI;
+    for (i = 0, newI = 0; i < count; i++, newI++)
+    {
+        if (i == ind)
+        {
+            newI--;
+            continue;
+        }
+        newobjs[newI] = arr->objs[i];
+    }
+    arr->objs = newobjs;
+    arr->count--;
+}
+
+void CLMutableArrayTypeAddObject(CLMutableArrayType *arr, void *o)
+{
+    CLMutableArrayTypeInsertObjectAtIndex(arr, o, 0);
 }
 
 bool CLMutableArrayContainsObject(CLMutableArrayType *a, void *o)

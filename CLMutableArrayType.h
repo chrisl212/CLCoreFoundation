@@ -23,6 +23,8 @@ CLArrayType *CLMutableArrayImmutableCopy(CLMutableArrayType *);
 size_t CLMutableArrayTypeCount(CLMutableArrayType *);
 void *CLMutableArrayObjectAtIndex(CLMutableArrayType *, int);
 void CLMutableArrayTypeAddObject(CLMutableArrayType *, void *);
+void CLMutableArrayTypeInsertObjectAtIndex(CLMutableArrayType *, void *, int ind);
+void CLMutableArrayTypeRemoveObjectAtIndex(CLMutableArrayType *, int ind);
 bool CLMutableArrayContainsObject(CLMutableArrayType *, void *);
 CLMutableArrayType *CLMutableArrayCopy(CLMutableArrayType *);
 void CLMutableArrayRelease(CLMutableArrayType *);
