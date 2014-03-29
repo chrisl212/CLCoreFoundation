@@ -58,6 +58,7 @@ CLFileType *CLFileWithPath(CLStringType *path, CLErrorType **e)
         if (!f)
         {
             *e = CLErrorWithDomainAndDescription(CLStringTypeCreateWithCString(CLCoreFoundationFileErrorDomain), CLStringTypeCreateWithCString(strerror(errno)));
+            fclose(f);
             return NULL;
         }
         if (ferror(f))

@@ -104,16 +104,17 @@ void CLMutableArrayTypeInsertObjectAtIndex(CLMutableArrayType *arr, void *o, int
         return;
     }
     size_t count = CLMutableArrayTypeCount(arr);
-    void **newobjs = malloc(100 * (count + 1));
-    int i;
-    for (i = 0; i < count; i++)
+    void **newobjs = malloc(1000 * (count + 1));
+    int i, newI;
+    for (i = 0, newI = 0; i < count + 1; i++, newI++)
     {
         if (i == ind)
         {
             newobjs[i] = o;
+            newI++;
             continue;
         }
-        newobjs[i] = arr->objs[i];
+        newobjs[newI] = arr->objs[i];
     }
     arr->objs = newobjs;
     arr->count++;
